@@ -1,0 +1,70 @@
+# yamllint disable rule:line-length
+"on":
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: write
+  pull-requests: write
+
+name: release-please
+
+# env is a set of environment variables that are available to all jobs in the workflow.
+env:
+  RUFF_OUTPUT_FORMAT: github
+  PYTHON_VERSION: "3.12"
+
+jobs:
+  release-please:
+    runs-on: ubuntu-22.04
+    outputs:
+      release_created: ${{ steps.release.outputs.release_created }}
+      tag_name: ${{ steps.release.outputs.tag_name }}
+      major: ${{ steps.release.outputs.major }}
+      minor: ${{ steps.release.outputs.minor }}
+      patch: ${{ steps.release.outputs.patch }}
+
+    steps:
+      - name: Generate a token
+        id: generate-token
+        uses: actions/create-github-app-token@v1
+        with:
+          app-id: ${{ secrets.SOFERAI_BOT_CLIENT_ID }}
+          private-key: ${{ secrets.SOFERAI_BOT_PRIVATE_SIGNING_KEY }}
+
+      - uses: googleapis/release-please-action@v4
+        id: release
+        with:
+          token: ${{ steps.generate-token.outputs.token }}
+          release-type: python
+          # Setting target-branch allows us to track multiple release branches
+          # (should we need to maintain a 1.x or similar branch.)
+          target-branch: ${{ github.ref_name }}
+
+  pypi-publish:
+    name: upload release to PyPI
+    needs: release-please
+    if: ${{ needs.release-please.outputs.release_created }}
+    runs-on: ubuntu-22.04
+    # Specifying a GitHub environment is optional, but strongly encouraged
+    environment: pypi
+    permissions:
+      # IMPORTANT: this permission is mandatory for trusted publishing
+      id-token: write
+    steps:
+      # retrieve your distributions here
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+
+      - name: "Install uv"
+        run: curl -LsSf https://astral.sh/uv/install.sh | sh
+
+      - name: Build with uv
+        run: uv build
+
+      - name: Publish package distributions to PyPI
+        uses: pypa/gh-action-pypi-publish@release/v1
