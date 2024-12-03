@@ -1,0 +1,100 @@
+# yamllint disable rule:line-length
+# GitHub Actions is a continuous integration and continuous delivery (CI/CD) platform that allows you to automate your build, test, and deployment pipeline.
+# You can create workflows that run tests whenever you push a change to your repository, or that deploy merged pull requests to production.
+# For more information, see the [GitHub Actions documentation](https://docs.github.com/en/actions).
+
+name: Continuous Integration
+
+# This workflow is triggered on push to the 'main' branch, pull request, and release.
+"on":
+  push:
+    branches: ["main"]
+  pull_request:
+  release:
+    types: [published]
+
+# env is a set of environment variables that are available to all jobs in the workflow.
+env:
+  RUFF_OUTPUT_FORMAT: github
+  PYTHON_VERSION: "3.10"
+
+# jobs is a set of discrete tasks that are run in parallel, unless specified otherwise.
+# each "job" is run on a fresh virtual machine.
+jobs:
+  format:
+    # This job checks out the code, sets up Python, installs the 'uv' tool, and runs a formatting check using 'ruff'.
+    name: "format"
+    runs-on: ubuntu-22.04
+    steps:
+      # actions/checkout@v4 is a GitHub Action that checks out the code in the repository.
+      - uses: actions/checkout@v4
+
+      # actions/setup-python@v5 is a GitHub Action that sets up the Python environment.
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+
+      - name: "Install uv"
+        run: curl -LsSf https://astral.sh/uv/install.sh | sh
+
+      - name: "Format"
+        run: uvx ruff format --diff .
+
+  lint:
+    # This job checks out the code, sets up Python, installs the 'uv' tool, and runs a linting check using 'ruff'.
+    timeout-minutes: 10
+    name: "lint"
+    runs-on: ubuntu-22.04
+    strategy:
+      fail-fast: false
+      matrix:
+        linter: ["ruff check"]
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+
+      - name: "Install uv"
+        run: curl -LsSf https://astral.sh/uv/install.sh | sh
+
+      - name: Lint
+        run: uvx ${{ matrix.linter }} .
+
+  test:
+    # This job runs tests on multiple Python versions (3.10, 3.11, 3.12).
+    runs-on: ubuntu-22.04
+    strategy:
+      matrix:
+        python-version: ["3.10", "3.11", "3.12", "3.13"]
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        id: setup-python
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Install uv
+        run: curl -LsSf https://astral.sh/uv/install.sh | sh
+
+      - name: Load cached venv
+        id: cached-poetry-dependencies
+        uses: actions/cache@v4
+        with:
+          path: .venv
+          key: venv-${{ runner.os }}-${{ steps.setup-python.outputs.python-version }}-${{ hashFiles('**/uv.lock') }}
+
+      - name: Install Dependencies
+        if: steps.cached-poetry-dependencies.outputs.cache-hit != 'true'
+        run: uv sync --frozen --no-install-project
+
+      - name: Install project
+        run: uv sync --frozen
+
+      - name: Run Pytest
+        run: |
+          uv run pytest -vv -s --cov=torah_dl
