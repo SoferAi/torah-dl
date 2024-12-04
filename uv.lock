@@ -515,6 +515,7 @@ dependencies = [
 
 [package.optional-dependencies]
 cli = [
+    { name = "rich" },
     { name = "typer" },
 ]
 
@@ -530,6 +531,7 @@ requires-dist = [
     { name = "bs4", specifier = ">=0.0.2" },
     { name = "pydantic", specifier = ">=2.10.3" },
     { name = "requests", specifier = ">=2.32.3" },
+    { name = "rich", marker = "extra == 'cli'", specifier = ">=13.0.0" },
     { name = "typer", marker = "extra == 'cli'", specifier = ">=0.14.0" },
     { name = "urllib3", specifier = ">=2.2.3" },
 ]

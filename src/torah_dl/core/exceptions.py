@@ -38,3 +38,9 @@ class ExtractorNotFoundError(ExtractionError):
     """Raised when no extractor is found for a given URL."""
 
     pass
+
+
+class DownloadError(TorahDLError):
+    """Raised when there are issues during the download process."""
+
+    pass

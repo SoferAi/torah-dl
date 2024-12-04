@@ -16,7 +16,7 @@ class YutorahExtractor(Extractor):
     """
 
     # URL pattern for YUTorah.org pages
-    URL_PATTERN = re.compile(r"https://www\.yutorah\.org/")
+    URL_PATTERN = re.compile(r"https?://(?:www\.)?yutorah\.org/")
 
     # Pattern to find download URL in script tags
     DOWNLOAD_URL_PATTERN = re.compile(r'"downloadURL":"(https?://[^\"]+\.mp3)"')
@@ -63,6 +63,8 @@ class YutorahExtractor(Extractor):
 
         download_url = match.group(1)
 
+        file_name = download_url.split("/")[-1]
+
         # Extract and decode title
         try:
             title_tag = soup.find("h2", itemprop="name")
@@ -74,4 +76,4 @@ class YutorahExtractor(Extractor):
         if not download_url or not title:
             raise ContentExtractionError()
 
-        return Extraction(download_url=download_url, title=title, file_format="mp3")
+        return Extraction(download_url=download_url, title=title, file_format="mp3", file_name=file_name)

@@ -54,4 +54,4 @@ tasks:
     desc: "Run the tests"
     aliases: ["t"]
     cmds:
-      - uv run pytest -vv -s --cov=torah_dl
+      - uv run pytest -vv -s --cov=torah_dl # --cov-report html

@@ -10,6 +10,7 @@ class Extraction(BaseModel):
     title: str | None = None
     download_url: str
     file_format: str | None = None
+    file_name: str | None = None
     # Add other common fields that all extractions should have
 
 
