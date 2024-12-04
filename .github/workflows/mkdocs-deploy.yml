@@ -57,9 +57,6 @@ jobs:
       - name: Install project
         run: uv sync --frozen
 
-      - name: Pull from GitHub
-        run: git fetch --all
-
       - name: Deploy docs for dev
         run: uv run mike deploy --push --update-aliases dev
         env:

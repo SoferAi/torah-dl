@@ -24,7 +24,7 @@ class Extractor(ABC):
         Returns the regex pattern(s) that match URLs this extractor can handle.
         Can return either a single compiled regex pattern or a list of patterns.
         """
-        pass
+        ...  # pragma: no cover
 
     def can_handle(self, url: str) -> bool:
         """
@@ -56,4 +56,4 @@ class Extractor(ABC):
         Raises:
             ValueError: If the URL is not supported by this extractor
         """
-        pass
+        ...  # pragma: no cover
