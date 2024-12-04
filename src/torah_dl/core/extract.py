@@ -1,5 +1,6 @@
+from .exceptions import ExtractorNotFoundError
 from .extractors import YutorahExtractor
-from .types import Extraction
+from .models import Extraction
 
 EXTRACTORS = [YutorahExtractor()]
 
@@ -9,8 +10,4 @@ def extract(url: str) -> Extraction:
         if extractor.can_handle(url):
             return extractor.extract(url)
 
-    raise ValueError(f"No extractor found for {url}")
-
-
-
-
+    raise ExtractorNotFoundError(url)

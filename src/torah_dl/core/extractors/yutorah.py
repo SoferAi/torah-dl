@@ -1,9 +1,12 @@
 import re
-from typing import Pattern, List
-from urllib.parse import unquote
+from re import Pattern
+
 import requests
 from bs4 import BeautifulSoup
-from ..types import Extractor, Extraction
+
+from ..exceptions import ContentExtractionError, DownloadURLError, NetworkError, TitleExtractionError
+from ..models import Extraction, Extractor
+
 
 class YutorahExtractor(Extractor):
     """Extract audio content from YUTorah.org.
@@ -14,19 +17,19 @@ class YutorahExtractor(Extractor):
 
     # URL pattern for YUTorah.org pages
     URL_PATTERN = re.compile(r"https://www\.yutorah\.org/")
-    
+
     # Pattern to find download URL in script tags
     DOWNLOAD_URL_PATTERN = re.compile(r'"downloadURL":"(https?://[^\"]+\.mp3)"')
 
     @property
-    def url_patterns(self) -> List[Pattern]:
+    def url_patterns(self) -> list[Pattern]:
         """Return the URL pattern(s) that this extractor can handle.
 
         Returns:
             List[Pattern]: List of compiled regex patterns matching YUTorah.org URLs
         """
         return [self.URL_PATTERN]
-    
+
     def extract(self, url: str) -> Extraction:
         """Extract download URL and title from a YUTorah.org page.
 
@@ -40,42 +43,35 @@ class YutorahExtractor(Extractor):
             ValueError: If the URL is invalid or content cannot be extracted
             requests.RequestException: If there are network-related issues
         """
-        try:    
-            response = requests.get(
-                url,
-                timeout=30,
-                headers={"User-Agent": "torah-dl/1.0"}
-            )
+        try:
+            response = requests.get(url, timeout=30, headers={"User-Agent": "torah-dl/1.0"})
             response.raise_for_status()
         except requests.RequestException as e:
-            raise ValueError(f"Failed to fetch {url}: {str(e)}") from e
+            raise NetworkError(str(e)) from e
 
         # Parse the page content
         soup = BeautifulSoup(response.content, "html.parser")
         script_tag = soup.find("script", string=self.DOWNLOAD_URL_PATTERN)
-        
+
         if not script_tag:
-            raise ValueError("Could not find download URL in page content")
+            raise DownloadURLError()
 
         # Extract download URL
         match = self.DOWNLOAD_URL_PATTERN.search(str(script_tag))
         if not match:
-            raise ValueError("Download URL pattern match failed")
-            
+            raise DownloadURLError()
+
         download_url = match.group(1)
-        
+
         # Extract and decode title
         try:
             title_tag = soup.find("h2", itemprop="name")
-            if title_tag:
-                title = title_tag.text
-            else:
-                title = None
+            title = title_tag.text if title_tag else None
 
         except (UnicodeError, IndexError) as e:
-            raise ValueError(f"Failed to decode title: {str(e)}") from e
+            raise TitleExtractionError(str(e)) from e
 
         if not download_url or not title:
-            raise ValueError("Failed to extract required content")
+            raise ContentExtractionError()
 
         return Extraction(download_url=download_url, title=title, file_format="mp3")
