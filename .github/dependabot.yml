@@ -1,0 +1,19 @@
+# Dependabot is a tool that helps you keep your dependencies up to date.
+# It automatically checks for updates to the dependencies you are using in your project.
+# When it finds an update, it creates a pull request with the updated dependency.
+# This helps ensure that your project is using the latest versions of its dependencies,
+# which can include important security fixes, performance improvements, and new features.
+# Dependabot can be configured to check for updates on a regular schedule and can be
+# customized to fit the needs of your project.
+
+version: 2
+updates:
+- package-ecosystem: "pip"
+  directory: "/"
+  schedule:
+    interval: "daily"
+  versioning-strategy: lockfile-only
+- package-ecosystem: "github-actions"
+  directory: "/"
+  schedule:
+    interval: "daily"
