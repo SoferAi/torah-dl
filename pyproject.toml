@@ -5,6 +5,24 @@ description = "Add your description here"
 readme = "README.md"
 authors = [{ name = "Matanya Loewenthal", email = "matanya@loewenthal.net" }]
 requires-python = ">=3.10"
+classifiers = [
+    "Operating System :: OS Independent",
+    "Environment :: Console",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Topic :: Software Development :: Libraries",
+    "Topic :: Software Development",
+    "Typing :: Typed",
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Religion",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "License :: OSI Approved :: MIT License",
+]
 dependencies = [
     "bs4>=0.0.2",
     "pydantic>=2.10.3",
@@ -29,7 +47,9 @@ dev = [
 torah-dl = "torah_dl.cli:app"
 tdl = "torah_dl.cli:app"
 
-# all formatting and linting for the whole repo goes here
+[tool.coverage.report]
+fail_under = 90
+
 [tool.ruff]
 # Exclude a variety of commonly ignored directories.
 exclude = [
@@ -105,7 +125,7 @@ select = [
     # tryceratops
     "TRY",
 ]
-ignore = ["RUF001", "B008"]
+ignore = []
 
 # Allow fix for all enabled rules (when `--fix`) is provided.
 fixable = ["ALL"]

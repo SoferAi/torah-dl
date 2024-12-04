@@ -523,7 +523,9 @@ cli = [
 dev = [
     { name = "pytest" },
     { name = "pytest-cov" },
+    { name = "rich" },
     { name = "ruff" },
+    { name = "typer" },
 ]
 
 [package.metadata]
@@ -540,7 +542,9 @@ requires-dist = [
 dev = [
     { name = "pytest", specifier = ">=8.3.4" },
     { name = "pytest-cov", specifier = ">=6.0.0" },
+    { name = "rich", specifier = ">=13.0.0" },
     { name = "ruff", specifier = ">=0.8.1" },
+    { name = "typer", specifier = ">=0.14.0" },
 ]
 
 [[package]]
