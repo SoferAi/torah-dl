@@ -61,3 +61,9 @@ tasks:
     cmds:
       - uv run typer torah_dl.cli utils docs --output docs/MANUAL.md --name torah-dl
       - uv run mkdocs build
+
+  gen-cov-badge:
+    desc: "Generate the coverage badge"
+    cmds:
+      - uv run pytest -vv -s --cov=torah_dl --cov-report xml
+      - uv run genbadge coverage --input-file coverage.xml --output-file docs/assets/coverage.svg

@@ -42,6 +42,12 @@ jobs:
       - name: Install project
         run: uv sync --frozen
 
+      - name: Set Git User
+        run: git config --global user.email "sofer-ai-bot@sofer.ai" && git config --global user.name "sofer-ai-bot"
+
+      - name: Pull from GitHub
+        run: git fetch --all
+
       - name: Deploy docs for dev
         run: uv run mike deploy --push --update-aliases dev
         env:
