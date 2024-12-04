@@ -2,13 +2,10 @@ name: Publish docs via GitHub Pages
 "on":
   push:
     branches: ["main"]
-  pull_request:
-    branches-ignore:
-      - "dependabot/**"
 
 
 jobs:
-  build-docs:
+  deploy-dev-docs:
     # This job runs tests on multiple Python versions (3.10, 3.11, 3.12).
     runs-on: ubuntu-22.04
     steps:
