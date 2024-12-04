@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.3.0](https://github.com/SoferAi/torah-dl/compare/v0.2.0...v0.3.0) (2024-12-04)
+
+
+### Features
+
+* support TorahAnytime links ([#8](https://github.com/SoferAi/torah-dl/issues/8)) ([b388308](https://github.com/SoferAi/torah-dl/commit/b388308ac8a08ef3fb8fa0c961d5c613edfdc64f))
+
+
+### Bug Fixes
+
+* readme, docs site ([#6](https://github.com/SoferAi/torah-dl/issues/6)) ([5cff7b1](https://github.com/SoferAi/torah-dl/commit/5cff7b14f29f4d2891aa1c94517116e351c19091))
+
 ## [0.2.0](https://github.com/SoferAi/torah-dl/compare/v0.1.0...v0.2.0) (2024-12-04)
 
 
