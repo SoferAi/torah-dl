@@ -17,7 +17,13 @@ core = []
 cli = ["typer>=0.14.0", "rich>=13.0.0"]
 
 [dependency-groups]
-dev = ["pytest-cov>=6.0.0", "pytest>=8.3.4", "ruff>=0.8.1"]
+dev = [
+    "pytest-cov>=6.0.0",
+    "pytest>=8.3.4",
+    "ruff>=0.8.1",
+    "typer>=0.14.0",
+    "rich>=13.0.0",
+]
 
 [project.scripts]
 torah-dl = "torah_dl.cli:app"
