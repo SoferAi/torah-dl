@@ -3,6 +3,9 @@
 [![uv](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/uv/main/assets/badge/v0.json)](https://github.com/astral-sh/uv)
 ![PyPI - Version](https://img.shields.io/pypi/v/torah-dl)
 [![image](https://img.shields.io/pypi/pyversions/torah-dl.svg)](https://pypi.python.org/pypi/torah-dl)
+[![image](https://img.shields.io/pypi/l/torah-dl.svg)](https://pypi.python.org/pypi/torah-dl)
+[![Actions status](https://github.com/soferai/torah-dl/actions/workflows/workflow.yml/badge.svg)](https://github.com/soferai/torah-dl/actions)
+[![Coverage Status](./docs/assets/coverage.svg)](https://soferai.github.io/torah-dl/)
 
 ## Why `torah-dl`?
 Most of our generation's Torah content is locked up in websites that are not easily accessible. Sofer.Ai is building a platform to make Torah accessible to everyone, and we decided to build key parts of that platform in the open. We intend to support every website with Torah audio on our platform, and realized quickly that even finding all the sites with audio would be a full-time job. So we open-sourced `torah-dl` to make it easier for others to download Torah audio from any website, and make Torah more accessible!
