@@ -32,7 +32,7 @@ Here is the list of sites that `torah-dl` supports already, and what's coming so
 - [ ] Help us out by adding your favorite Torah website!
 
 ## Contributing
-We'd love your help! Please see our [CONTRIBUTING.md](docs/CONTRIBUTING.md) for more information on how to get involved.
+We'd love your help! Please see our [CONTRIBUTING.md](CONTRIBUTING.md) for more information on how to get involved.
 
 ## Frequently Asked Questions
 <details>
