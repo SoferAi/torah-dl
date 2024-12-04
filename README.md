@@ -33,4 +33,27 @@ Here is the list of sites that `torah-dl` supports already, and what's coming so
 
 ## Contributing
 We'd love your help! Please see our [CONTRIBUTING.md](docs/CONTRIBUTING.md) for more information on how to get involved.
+
+## Frequently Asked Questions
+<details>
+
+<summary>Am I allowed to download Torah audio from these websites?</summary>
+
+### You are responsible for ensuring that you follow all Terms of Service agreements, Copyright agreements, and other legal agreements with these websites.
+ TODO: get a lawyer to review this.
+</details>
+
+<details>
+<summary>How do I download audio from a site that is not on the list?</summary>
+
+### We'd love your help! Please see our [CONTRIBUTING.md](docs/CONTRIBUTING.md) for more information on how to get involved.
+</details>
+
+<details>
+<summary>What are the usecases for `torah-dl`?</summary>
+
+Allowing transcription services to make Torah more accessible 😉
+
+Other uses include downloading Torah audio for offline listening, or for use in Torah study tools, or for training AI models to understand Torah, or for other purposes (please see question above about permissions).
+</details>
 <!--intro-end-->
