@@ -55,3 +55,9 @@ tasks:
     aliases: ["t"]
     cmds:
       - uv run pytest -vv -s --cov=torah_dl # --cov-report html
+
+  docs:
+    desc: "Generate the documentation"
+    cmds:
+      - uv run typer torah_dl.cli utils docs --output docs/MANUAL.md --name torah-dl
+      - uv run mkdocs build

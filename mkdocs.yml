@@ -1,0 +1,86 @@
+site_name: Torah-dl Docs
+
+repo_url: https://github.com/SoferAI/torah-dl
+repo_name: SoferAI/torah-dl
+
+theme:
+  name: material
+  features:
+    - navigation.instant
+    - navigation.tracking
+    - navigation.tabs
+    - navigation.expand
+    - search.suggest
+    - search.highlight
+  icon:
+    logo: material/tree
+  palette:
+    # Palette toggle for automatic mode
+    - media: "(prefers-color-scheme)"
+      toggle:
+        icon: material/brightness-auto
+        name: Switch to light mode
+
+    # Palette toggle for light mode
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: dark blue
+      accent: dark blue
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+
+    # Palette toggle for dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: dark blue
+      accent: dark blue
+      toggle:
+        icon: material/brightness-4
+        name: Switch to system preference
+
+validation:
+  links:
+    absolute_links: info
+    anchors: warn
+    unrecognized_links: warn
+
+plugins:
+  - search
+  - tags
+  - include-markdown
+  - gen-files:
+      scripts:
+        - scripts/gen_ref_pages.py
+  - literate-nav:
+      nav_file: SUMMARY.md
+  - section-index
+  - mkdocstrings:
+      handlers:
+        python:
+          options:
+            docstring_style: google
+            separate_signature: true
+            show_signature_annotations: true
+            signature_crossrefs: false
+            unwrap_annotated: false
+            show_docstring_examples: true
+            show_docstring_signature: true
+            show_docstring_source: true
+            show_docstring_summary: true
+            show_docstring_return: true
+            heading_level: 2
+
+nav:
+  - Home: index.md
+  - Manual: MANUAL.md
+  - Contributing: CONTRIBUTING.md
+  - Code Reference: reference/
+
+markdown_extensions:
+  - pymdownx.tasklist:
+      custom_checkbox: true
+
+extra:
+  version:
+    provider: mike
