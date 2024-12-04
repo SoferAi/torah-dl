@@ -11,7 +11,7 @@ from torah_dl.core.exceptions import ExtractorNotFoundError
 
 try:
     __version__ = importlib.metadata.version(__package__ or __name__)
-except importlib.metadata.PackageNotFoundError:
+except importlib.metadata.PackageNotFoundError:  # pragma: no cover
     __version__ = "develop"
 
 app = typer.Typer()
@@ -26,19 +26,19 @@ def extract_url(
     """
     Extract information from a given URL
     """
-    try:
-        extraction = extract(url)
-    except ExtractorNotFoundError:
-        typer.echo(f"Extractor not found for URL: {url}", err=True)
-        raise typer.Exit(1) from None
+    with console.status("Extracting URL..."):
+        try:
+            extraction = extract(url)
+        except ExtractorNotFoundError:
+            typer.echo(f"Extractor not found for URL: {url}", err=True)
+            raise typer.Exit(1) from None
 
-    table = Table(box=None, pad_edge=False)
-    table.add_column("Title", style="cyan")
-    table.add_column("Download URL", style="green")
-    table.add_row(extraction.title, extraction.download_url)
     if url_only:
         typer.echo(extraction.download_url)
     else:
+        table = Table(box=None, pad_edge=False)
+        table.add_row("Title", extraction.title, style="cyan")
+        table.add_row("Download URL", extraction.download_url, style="green")
         console.print(table)
 
 
@@ -76,5 +76,5 @@ def callback(
     pass
 
 
-if __name__ == "__main__":
+if __name__ == "__main__":  # pragma: no cover
     app()

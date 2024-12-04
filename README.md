@@ -26,7 +26,7 @@ print(extraction.download_url)
 Here is the list of sites that `torah-dl` supports already, and what's coming soon:
 
 - [x] [Yutorah](https://www.yutorah.org)
-- [ ] [TorahAnytime](https://www.torahanytime.com)
+- [x] [TorahAnytime](https://www.torahanytime.com)
 - [ ] [OUTorah.org](https://www.outorah.org)
 - [ ] [TorahDownloads.org](https://www.torahdownloads.org)
 - [ ] Help us out by adding your favorite Torah website!
