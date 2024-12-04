@@ -11,6 +11,7 @@ def test_download(tmp_path):
 
     download(url, tmp_path / "test.mp3")
     assert os.path.exists(tmp_path / "test.mp3")
+    # TODO: check that it's actually an mp3 file
 
 
 def test_download_failed(tmp_path):

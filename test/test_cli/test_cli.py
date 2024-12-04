@@ -22,7 +22,7 @@ def test_help():
 def test_extract_url():
     result = runner.invoke(app, ["extract", "https://www.yutorah.org/lectures/details?shiurid=1117409"])
     assert result.exit_code == 0
-    assert "https://download.yutorah.org/2024/21197/1117409/ketubot-42-dechitat-aveilut-1.mp3" in result.output
+    assert "Ketubot 42: Dechitat Aveilut (1)" in result.output
 
 
 def test_extract_url_only():
