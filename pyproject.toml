@@ -51,6 +51,7 @@ dev = [
     "mkdocs-autorefs>=1.2.0",
     "mkdocs-section-index>=0.3.9",
     "genbadge[coverage]>=1.1.1",
+    "yamlfix>=1.17.0",
 ]
 
 [project.scripts]

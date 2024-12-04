@@ -1,69 +1,59 @@
+---
 # This Taskfile defines a set of tasks that can be run using the `task` command.
 # To invoke a task, use the command `task <task_name>`. For example, to run the `init` task, use `task init`.
 
 # This is the version of the Taskfile format being used
-version: "3"
-
+version: '3'
 # Define the tasks that can be run
 tasks:
   install:
-    desc: "Install project dependencies"
-    cmds:
-      - uv sync
-
+    desc: Install project dependencies
+    cmds: [uv sync]
   format:
-    desc: "Format the codebase"
-
-    aliases: ["f"] # Short alias for the format task
+    desc: Format the codebase
+    aliases: [f]  # Short alias for the format task
     cmds:
       - task: format::ruff
-
   format::ruff:
-    desc: "Run the Ruff linter on the entire codebase"
-    dir: "{{.TASKFILE_DIR}}"
+    desc: Run the Ruff linter on the entire codebase
+    dir: '{{.TASKFILE_DIR}}'
     cmds:
       - uv run ruff format .
 
   # Task to lint the codebase
   lint:
-    desc: "Lint the codebase"
-    aliases: ["l"] # Short alias for the lint task
+    desc: Lint the codebase
+    aliases: [l]  # Short alias for the lint task
     cmds:
       - task: lint::ruff
-
   lint::ruff:
-    desc: "Run the Ruff linter on the entire codebase"
+    desc: Run the Ruff linter on the entire codebase
     cmds:
       - uv run ruff check .
 
   # Task to fix linting issues in the codebase
   fix:
-    desc: "Fix linting issues in the codebase"
-    cmds:
-      - uv run ruff check . --fix
-
+    desc: Fix linting issues in the codebase
+    cmds: [uv run ruff check . --fix]
   do:
-    desc: "run all the tasks"
+    desc: run all the tasks
     cmds:
       - task: format
       - task: fix
       - task: lint
       - task: test
-
   test:
-    desc: "Run the tests"
-    aliases: ["t"]
+    desc: Run the tests
+    aliases: [t]
     cmds:
-      - uv run pytest -vv -s --cov=torah_dl # --cov-report html
-
+      - uv run pytest -vv -s --cov=torah_dl  # --cov-report html
   docs:
-    desc: "Generate the documentation"
+    desc: Generate the documentation
     cmds:
       - uv run typer torah_dl.cli utils docs --output docs/MANUAL.md --name torah-dl
       - uv run mkdocs build
-
   gen-cov-badge:
-    desc: "Generate the coverage badge"
+    desc: Generate the coverage badge
     cmds:
       - uv run pytest -vv -s --cov=torah_dl --cov-report xml
       - uv run genbadge coverage --input-file coverage.xml --output-file docs/assets/coverage.svg
