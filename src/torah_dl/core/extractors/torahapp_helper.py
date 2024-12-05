@@ -89,7 +89,7 @@ def _get_download_link(root: ET.Element, episode_id: str) -> tuple:
             # ex. http://outorah.org/p/81351 => http:__outorah.org_p_81351
             file_name = guid.replace('/', '_')
             return (enclosure.get('url'), enclosure_type, item.find('title').text, file_name)
-    return None
+    raise Exception('guid not found: %s' % episode_id)
 
 
 test_urls = [
