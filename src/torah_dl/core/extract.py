@@ -1,8 +1,8 @@
 from .exceptions import ExtractorNotFoundError
-from .extractors import TorahAnytimeExtractor, YutorahExtractor
+from .extractors import TorahAnytimeExtractor, YutorahExtractor, TorahAppExtractor
 from .models import Extraction
 
-EXTRACTORS = [YutorahExtractor(), TorahAnytimeExtractor()]
+EXTRACTORS = [YutorahExtractor(), TorahAnytimeExtractor(), TorahAppExtractor()]
 
 
 def extract(url: str) -> Extraction:
