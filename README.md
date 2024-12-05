@@ -27,7 +27,8 @@ Here is the list of sites that `torah-dl` supports already, and what's coming so
 
 - [x] [Yutorah](https://www.yutorah.org)
 - [x] [TorahAnytime](https://www.torahanytime.com)
-- [x] [TorahApp.org](https://torahapp.org) - Includes shiurim from many sources such as YUTorah, OUTorah, & podcasts
+- [x] [TorahApp.org](https://torahapp.org) - Includes shiurim from many sources such as YUTorah, OUTorah, & podcasts.
+Note: TorahApp doesn't create copies of audio files, but relies on audio from the original content owner's website. So this allows using TorahApp to get conent from many sources while still downloading from the origin.
 - [ ] [OUTorah.org](https://www.outorah.org)
 - [ ] [TorahDownloads.org](https://www.torahdownloads.org)
 - [ ] Help us out by adding your favorite Torah website!
