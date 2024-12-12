@@ -4,7 +4,7 @@ from re import Pattern
 import requests
 
 from ..exceptions import ContentExtractionError, DownloadURLError, NetworkError, TitleExtractionError
-from ..models import Extraction, Extractor
+from ..models import Extraction, ExtractionExample, Extractor
 
 
 class TorahAnytimeExtractor(Extractor):
@@ -13,6 +13,33 @@ class TorahAnytimeExtractor(Extractor):
     This extractor handles URLs from www.torahanytime.com and extracts MP3 download
     links along with their associated titles from the page's JavaScript content.
     """
+
+    EXAMPLES = [  # noqa: RUF012
+        ExtractionExample(
+            name="main_page",
+            url="https://torahanytime.com/lectures/335042",
+            download_url="https://dl.torahanytime.com/mp3/335042--____10_04_2024__ee9743cb-5d09-4ffc-a3e3-1156e10e8944.mp4.mp3",
+            title="Aish Kodesh- Toldot, 5702, When It's Hard to Thank Hashem (2021/22 Series- Enhanced III)",
+            file_format="mp3",
+            valid=True,
+        ),
+        ExtractionExample(
+            name="short_link",
+            url="https://MyTAT.me/a335042",
+            download_url="https://dl.torahanytime.com/mp3/335042--____10_04_2024__ee9743cb-5d09-4ffc-a3e3-1156e10e8944.mp4.mp3",
+            title="Aish Kodesh- Toldot, 5702, When It's Hard to Thank Hashem (2021/22 Series- Enhanced III)",
+            file_format="mp3",
+            valid=True,
+        ),
+        ExtractionExample(
+            name="invalid_link",
+            url="https://torahanytime.com/whatever/0000000",
+            download_url="",
+            title="",
+            file_format="",
+            valid=False,
+        ),
+    ]
 
     # URL pattern for TorahAnytime.com pages
     URL_PATTERN = re.compile(r"https?://(?:www\.)?torahanytime\.com/")
