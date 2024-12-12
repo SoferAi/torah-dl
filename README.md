@@ -11,7 +11,7 @@
 Most of our generation's Torah content is locked up in websites that are not easily accessible. Sofer.Ai is building a platform to make Torah accessible to everyone, and we decided to build key parts of that platform in the open. We intend to support every website with Torah audio on our platform, and realized quickly that even finding all the sites with audio would be a full-time job. So we open-sourced `torah-dl` to make it easier for others to download Torah audio from any website, and make Torah more accessible!
 
 ## How does it work?
-`torah-dl` is a library and a set of command-line tools for downloading media from Torah websites. You can use it as a command-line tool with `uvx` (preferred), `pipx`, `pip`, `poetry`, `venv`, or any Python tool installer of your choice, simply by running `uvx torah-dl`.
+`torah-dl` is a library and a set of command-line tools for downloading media from Torah websites. You can use it as a command-line tool with `uv` (preferred), `pipx`, `pip`, `poetry`, `venv`, or any Python tool installer of your choice, simply by running `uv tool install "torah-dl[cli]"`, and then running `torah-dl`.
 
 For those who want to integrate `torah-dl` into their Python application, you can simply install it via `uv add torah-dl` or `pip install torah-dl`. You can then use the library in your code as you would any other Python library:
 

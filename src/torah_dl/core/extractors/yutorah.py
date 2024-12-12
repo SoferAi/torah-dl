@@ -5,7 +5,7 @@ import requests
 from bs4 import BeautifulSoup
 
 from ..exceptions import ContentExtractionError, DownloadURLError, NetworkError, TitleExtractionError
-from ..models import Extraction, Extractor
+from ..models import Extraction, ExtractionExample, Extractor
 
 
 class YutorahExtractor(Extractor):
@@ -14,6 +14,41 @@ class YutorahExtractor(Extractor):
     This extractor handles URLs from www.yutorah.org and extracts MP3 download
     links along with their associated titles from the page's JavaScript content.
     """
+
+    EXAMPLES = [  # noqa: RUF012
+        ExtractionExample(
+            name="main_page",
+            url="https://www.yutorah.org/lectures/1116616/Praying-for-Rain-and-the-International-Traveler",
+            download_url="https://download.yutorah.org/2024/986/1116616/praying-for-rain-and-the-international-traveler.mp3",
+            title="Praying for Rain and the International Traveler",
+            file_format="mp3",
+            valid=True,
+        ),
+        ExtractionExample(
+            name="short_link",
+            url="https://www.yutorah.org/lectures/1117459/",
+            download_url="https://download.yutorah.org/2024/986/1117459/davening-with-strep-throat.mp3",
+            title="Davening with Strep Throat",
+            file_format="mp3",
+            valid=True,
+        ),
+        ExtractionExample(
+            name="shiurid_link",
+            url="https://www.yutorah.org/lectures/details?shiurid=1117409",
+            download_url="https://download.yutorah.org/2024/21197/1117409/ketubot-42-dechitat-aveilut-1.mp3",
+            title="Ketubot 42: Dechitat Aveilut (1)",
+            file_format="mp3",
+            valid=True,
+        ),
+        ExtractionExample(
+            name="invalid_link",
+            url="https://www.yutorah.org/lectures/details?shiurid=0000000",
+            download_url="",
+            title="",
+            file_format="",
+            valid=False,
+        ),
+    ]
 
     # URL pattern for YUTorah.org pages
     URL_PATTERN = re.compile(r"https?://(?:www\.)?yutorah\.org/")
