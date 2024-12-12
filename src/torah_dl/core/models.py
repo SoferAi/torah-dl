@@ -1,5 +1,6 @@
 from abc import ABC, abstractmethod
 from re import Pattern
+from typing import ClassVar
 
 from pydantic import BaseModel
 
@@ -14,8 +15,21 @@ class Extraction(BaseModel):
     # Add other common fields that all extractions should have
 
 
+class ExtractionExample(BaseModel):
+    """Represents an example of an extraction."""
+
+    name: str
+    url: str
+    download_url: str
+    title: str
+    file_format: str
+    valid: bool
+
+
 class Extractor(ABC):
     """Abstract base class for all extractors."""
+
+    EXAMPLES: ClassVar[list[ExtractionExample]] = []
 
     @property
     @abstractmethod
