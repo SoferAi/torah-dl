@@ -1,8 +1,19 @@
-from .exceptions import ExtractorNotFoundError
-from .extractors import TorahAnytimeExtractor, YutorahExtractor
-from .models import Extraction
+import importlib
+import inspect
+import pkgutil
 
-EXTRACTORS = [YutorahExtractor(), TorahAnytimeExtractor()]
+from . import extractors
+from .exceptions import ExtractorNotFoundError
+from .models import Extraction, Extractor
+
+# Dynamically build EXTRACTORS list
+EXTRACTORS = []
+for _, name, _ in pkgutil.iter_modules(extractors.__path__):
+    module = importlib.import_module(f".{name}", "torah_dl.core.extractors")
+    for _, obj in inspect.getmembers(module):
+        # Check if it's a class and ends with 'Extractor' (excluding the base class if you have one)
+        if inspect.isclass(obj) and issubclass(obj, Extractor) and obj is not Extractor:
+            EXTRACTORS.append(obj())
 
 
 def extract(url: str) -> Extraction:
@@ -12,3 +23,8 @@ def extract(url: str) -> Extraction:
             return extractor.extract(url)
 
     raise ExtractorNotFoundError(url)
+
+
+def can_handle(url: str) -> bool:
+    """Checks if a given URL can be handled by any extractor."""
+    return any(extractor.can_handle(url) for extractor in EXTRACTORS)
