@@ -40,6 +40,9 @@ jobs:
       - name: Set Git User
         run: git config --global user.email "${{ steps.committer.outputs.bot-email }}" && git config --global user.name "${{ steps.committer.outputs.bot-name }}"
 
+      - name: Set Git URL
+        run: git config --global url.https://${{ steps.generate-token.outputs.token }}@github.com/.insteadOf https://github.com/
+
       - name: Install uv
         run: curl -LsSf https://astral.sh/uv/install.sh | sh
 
