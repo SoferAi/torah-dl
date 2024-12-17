@@ -10,13 +10,6 @@ import defusedxml.ElementTree as DET
 from ..exceptions import ContentExtractionError
 from ..models import Extraction, ExtractionExample, Extractor
 
-# Examples / Testing
-# test_urls = [
-#     'https://torahapp.org/share/p/YU_80714_all/e/yu:1021736',
-#     'https://thetorahapp.org/share/p/YU_80714_all/e/yu:1021737',
-#     'https://torahapp.org/share/p/OU_4106?e=http%3A%2F%2Foutorah.org%2Fp%2F81351',
-# ]
-
 
 class TorahAppExtractor(Extractor):
     EXAMPLES = [  # noqa: RUF012
