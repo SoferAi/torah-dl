@@ -20,7 +20,7 @@ class TorahAnytimeExtractor(Extractor):
             url="https://torahanytime.com/lectures/335042",
             download_url="https://dl.torahanytime.com/mp3/335042--____10_04_2024__ee9743cb-5d09-4ffc-a3e3-1156e10e8944.mp4.mp3",
             title="Aish Kodesh- Toldot, 5702, When It's Hard to Thank Hashem (2021/22 Series- Enhanced III)",
-            file_format="mp3",
+            file_format="audio/mp3",
             valid=True,
         ),
         ExtractionExample(
@@ -28,7 +28,7 @@ class TorahAnytimeExtractor(Extractor):
             url="https://MyTAT.me/a335042",
             download_url="https://dl.torahanytime.com/mp3/335042--____10_04_2024__ee9743cb-5d09-4ffc-a3e3-1156e10e8944.mp4.mp3",
             title="Aish Kodesh- Toldot, 5702, When It's Hard to Thank Hashem (2021/22 Series- Enhanced III)",
-            file_format="mp3",
+            file_format="audio/mp3",
             valid=True,
         ),
         ExtractionExample(
@@ -97,4 +97,4 @@ class TorahAnytimeExtractor(Extractor):
         if not download_url or not title:
             raise ContentExtractionError()
 
-        return Extraction(download_url=download_url, title=title, file_format="mp3", file_name=file_name)
+        return Extraction(download_url=download_url, title=title, file_format="audio/mp3", file_name=file_name)
