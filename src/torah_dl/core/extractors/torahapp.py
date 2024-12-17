@@ -1,6 +1,8 @@
 import json
 import re
 import urllib.request
+
+# nosemgrep: python.lang.security.use-defused-xml.use-defused-xml
 import xml.etree.ElementTree as ET  # noqa: S405
 from re import Pattern
 from urllib.parse import ParseResult, unquote, urlparse
