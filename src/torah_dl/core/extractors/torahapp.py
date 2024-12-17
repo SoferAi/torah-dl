@@ -1,6 +1,4 @@
-import json
 import re
-import urllib.request
 
 # nosemgrep: python.lang.security.use-defused-xml.use-defused-xml
 import xml.etree.ElementTree as ET  # noqa: S405
@@ -8,6 +6,7 @@ from re import Pattern
 from urllib.parse import ParseResult, unquote, urlparse
 
 import defusedxml.ElementTree as DET
+import requests
 
 from ..exceptions import ContentExtractionError
 from ..models import Extraction, ExtractionExample, Extractor
@@ -122,36 +121,19 @@ class TorahAppExtractor(Extractor):
 
     def _get_podcast_metadata(self):
         if self.podcasts_to_rss:
-            # avoid redownloading file
             return
 
-        # print('fetching podcasts_metadata')
-        req = urllib.request.Request(
-            "https://feeds.thetorahapp.org/data/podcasts_metadata.min.json",
-            data=None,
-        )
-        # TODO(@herzberg): suspicious-url-open-usage (S310)
-        # use a more secure method to fetch the data
-        with urllib.request.urlopen(req, context=None) as f:  # noqa: S310
-            html = f.read()
-            data = json.loads(html)
+        response = requests.get("https://feeds.thetorahapp.org/data/podcasts_metadata.min.json", timeout=30)
+        response.raise_for_status()
+        data = response.json()
 
         self.podcasts_to_rss = {x["pId"]: x["u"] for x in data["podcasts"]}
-        # Topic title is the "title" for the given podcast series
-        # podcasts_to_topic_title = {x['pId']: x['tt'] for x in data['podcasts']}
 
     def _get_xml_file(self, rss_url: str) -> ET.Element:
-        # TODO(@herzberg): suspicious-url-open-usage (S310)
-        # use a more secure method to fetch the data
-        req = urllib.request.Request(  # noqa: S310
-            str(rss_url),
-            data=None,
-        )
-        # TODO(@herzberg): suspicious-url-open-usage (S310)
-        with urllib.request.urlopen(req, context=None) as f:  # noqa: S310
-            html = f.read().decode("utf-8")
-            html = html.replace("&feature=youtu.be</guid>", "</guid>")
-            root = DET.fromstring(html)
+        response = requests.get(str(rss_url), timeout=30)
+        response.raise_for_status()
+        html = response.text.replace("&feature=youtu.be</guid>", "</guid>")
+        root = DET.fromstring(html)
         return root
 
     def _get_download_link(self, root: ET.Element, episode_id: str) -> Extraction:
