@@ -21,7 +21,7 @@ class YutorahExtractor(Extractor):
             url="https://www.yutorah.org/lectures/1116616/Praying-for-Rain-and-the-International-Traveler",
             download_url="https://download.yutorah.org/2024/986/1116616/praying-for-rain-and-the-international-traveler.mp3",
             title="Praying for Rain and the International Traveler",
-            file_format="mp3",
+            file_format="audio/mp3",
             valid=True,
         ),
         ExtractionExample(
@@ -29,7 +29,7 @@ class YutorahExtractor(Extractor):
             url="https://www.yutorah.org/lectures/1117459/",
             download_url="https://download.yutorah.org/2024/986/1117459/davening-with-strep-throat.mp3",
             title="Davening with Strep Throat",
-            file_format="mp3",
+            file_format="audio/mp3",
             valid=True,
         ),
         ExtractionExample(
@@ -37,7 +37,7 @@ class YutorahExtractor(Extractor):
             url="https://www.yutorah.org/lectures/details?shiurid=1117409",
             download_url="https://download.yutorah.org/2024/21197/1117409/ketubot-42-dechitat-aveilut-1.mp3",
             title="Ketubot 42: Dechitat Aveilut (1)",
-            file_format="mp3",
+            file_format="audio/mp3",
             valid=True,
         ),
         ExtractionExample(
@@ -111,4 +111,4 @@ class YutorahExtractor(Extractor):
         if not download_url or not title:
             raise ContentExtractionError()
 
-        return Extraction(download_url=download_url, title=title, file_format="mp3", file_name=file_name)
+        return Extraction(download_url=download_url, title=title, file_format="audio/mp3", file_name=file_name)

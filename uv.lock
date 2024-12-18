@@ -1212,6 +1212,7 @@ version = "0.2.0"
 source = { editable = "." }
 dependencies = [
     { name = "bs4" },
+    { name = "defusedxml" },
     { name = "pydantic" },
     { name = "requests" },
     { name = "urllib3" },
@@ -1246,6 +1247,7 @@ dev = [
 [package.metadata]
 requires-dist = [
     { name = "bs4", specifier = ">=0.0.2" },
+    { name = "defusedxml", specifier = ">=0.7.1" },
     { name = "pydantic", specifier = ">=2.10.3" },
     { name = "requests", specifier = ">=2.32.3" },
     { name = "rich", marker = "extra == 'cli'", specifier = ">=13.0.0" },
