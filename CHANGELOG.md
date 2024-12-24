@@ -1,5 +1,21 @@
 # Changelog
 
+## [0.3.0](https://github.com/SoferAi/torah-dl/compare/v0.2.0...v0.3.0) (2024-12-24)
+
+
+### Features
+
+* add TorahApp to torah-dl ([#12](https://github.com/SoferAi/torah-dl/issues/12)) ([770173b](https://github.com/SoferAi/torah-dl/commit/770173b31602ae0e755556ccaac6b9a3a94ba720))
+* automatic testing ([#10](https://github.com/SoferAi/torah-dl/issues/10)) ([7880a40](https://github.com/SoferAi/torah-dl/commit/7880a4067ace6b6548683c2e7bc96e7e08ea8cae))
+* single file extractor config ([#11](https://github.com/SoferAi/torah-dl/issues/11)) ([ac253df](https://github.com/SoferAi/torah-dl/commit/ac253dfb08e198ad8c32b67e56beb05857d26cbb))
+* support OUtorah.org links ([#13](https://github.com/SoferAi/torah-dl/issues/13)) ([31b11c6](https://github.com/SoferAi/torah-dl/commit/31b11c6548c8d0b866cba4c0f45671e70bc366fb))
+* support TorahAnytime links ([#8](https://github.com/SoferAi/torah-dl/issues/8)) ([b388308](https://github.com/SoferAi/torah-dl/commit/b388308ac8a08ef3fb8fa0c961d5c613edfdc64f))
+
+
+### Bug Fixes
+
+* readme, docs site ([#6](https://github.com/SoferAi/torah-dl/issues/6)) ([5cff7b1](https://github.com/SoferAi/torah-dl/commit/5cff7b14f29f4d2891aa1c94517116e351c19091))
+
 ## [0.2.0](https://github.com/SoferAi/torah-dl/compare/v0.1.0...v0.2.0) (2024-12-04)
 
 
