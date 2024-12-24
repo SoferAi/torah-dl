@@ -28,7 +28,7 @@ Here is the list of sites that `torah-dl` supports already, and what's coming so
 - [x] [Yutorah](https://www.yutorah.org)
 - [x] [TorahAnytime](https://www.torahanytime.com)
 - [x] [TorahApp](https://torahapp.org)
-- [ ] [OUTorah.org](https://www.outorah.org)
+- [x] [OUTorah.org](https://www.outorah.org)
 - [ ] [TorahDownloads.org](https://www.torahdownloads.org)
 - [ ] Help us out by adding your favorite Torah website!
 
