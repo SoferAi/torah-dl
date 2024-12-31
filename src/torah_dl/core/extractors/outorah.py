@@ -20,7 +20,7 @@ class OutorahExtractor(Extractor):
         ExtractionExample(
             name="main_page",
             url="https://outorah.org/p/212365",
-            download_url="https://media.ou.org/torah/4093/212365/212365.mp3",
+            download_url="https://media.ou.org/audio/torat_imecha_parsha/ti_miketz_85-1734986492.mp3",
             title="Parshat Miketz: A Chanukah Charade",
             file_format="audio/mp3",
             valid=True,
