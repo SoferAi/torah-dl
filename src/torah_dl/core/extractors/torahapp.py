@@ -33,7 +33,7 @@ class TorahAppExtractor(Extractor):
         ExtractionExample(
             name="ou_lecture",
             url="https://thetorahapp.org/share/p/OU_4106?e=http%3A%2F%2Foutorah.org%2Fp%2F81351",
-            download_url="https://media.ou.org/audio/parsha/rabbi-zecharia-resnik/bo-5.mp3",
+            download_url="https://media.ou.org/torah/4106/81351/81351.mp3",
             title="Bo - Chamishi",
             file_format="audio/mp3",
             valid=True,
