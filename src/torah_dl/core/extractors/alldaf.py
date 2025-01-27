@@ -124,7 +124,7 @@ class AllDafExtractor(Extractor):
         #         title = title.get_text().strip() if title else None
         #         file_format = f"audio/{download_url.split('.')[-1].lower()}"
         #         file_name = download_url.split("/")[-1]
-        #         return Extraction(download_url=download_url, title=title, file_format=file_format, file_name=file_name)
+        #        return Extraction(download_url=download_url, title=title, file_format=file_format, file_name=file_name)
 
         # Try finding in the raw HTML for any mp3/mp4 URLs
         # media_url_match = self.RAW_URL_PATTERN.search(html)
