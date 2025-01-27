@@ -75,7 +75,7 @@ class TorahAnytimeExtractor(Extractor):
             response = requests.get(url, timeout=30, headers={"User-Agent": "torah-dl/1.0"})
             response.raise_for_status()
         except (requests.RequestException, requests.HTTPError) as e:
-            raise NetworkError(str(e)) from e
+            raise NetworkError(str(e)) from e  # pragma: no cover
 
         # Extract download URL
         match = self.DOWNLOAD_URL_PATTERN.search(response.text)
