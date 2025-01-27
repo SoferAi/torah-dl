@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.4.0](https://github.com/SoferAi/torah-dl/compare/v0.3.1...v0.4.0) (2025-01-27)
+
+
+### Features
+
+* add torahdownloads.org ([c33725a](https://github.com/SoferAi/torah-dl/commit/c33725aa5b938b7d0b3dd3e24a90d93168e9e047))
+* alldaf support ([#22](https://github.com/SoferAi/torah-dl/issues/22)) ([fc75ee3](https://github.com/SoferAi/torah-dl/commit/fc75ee33e69f1bcd8c9080dbe31bccb43920406e))
+
 ## [0.3.1](https://github.com/SoferAi/torah-dl/compare/v0.3.0...v0.3.1) (2024-12-31)
 
 
