@@ -24,7 +24,7 @@ jobs:
   format:
     # This job checks out the code, sets up Python, installs the 'uv' tool, and runs a formatting check using 'ruff'.
     name: "format"
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-24.04
     steps:
       # actions/checkout@v4 is a GitHub Action that checks out the code in the repository.
       - uses: actions/checkout@v4
@@ -44,7 +44,7 @@ jobs:
     # This job checks out the code, sets up Python, installs the 'uv' tool, and runs a linting check using 'ruff'.
     timeout-minutes: 10
     name: "lint"
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-24.04
     strategy:
       fail-fast: false
       matrix:
