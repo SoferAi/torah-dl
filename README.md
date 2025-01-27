@@ -39,7 +39,7 @@ Here is the list of sites that `torah-dl` supports already, and what's coming so
 - [ ] [AllHalacha.org](https://www.allhalacha.org)
 - [ ] [AllParsha.com](https://www.allparsha.org)
 - [ ] [AllMishna.com](https://www.allmishna.com)
-- [ ] [TorahDownloads.org](https://www.torahdownloads.org)
+- [x] [TorahDownloads.org](https://www.torahdownloads.org)
 - [ ] Help us out by adding your favorite Torah website!
 
 ## Contributing
