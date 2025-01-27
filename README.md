@@ -20,7 +20,13 @@ from torah_dl import extract
 
 extraction = extract("https://www.yutorah.org/lectures/details?shiurid=1117416")
 
-print(extraction.download_url)
+print(extraction.download_url) # https://download.yutorah.org/2024/34263/1117416/ketuvot-57a-b---preparation-for-nisuin.mp3
+
+print(extraction.title) # Ketuvot 57a-b - Preparation for Nisuin
+
+print(extraction.file_format) # audio/mp3
+
+print(extraction.file_name) # ketuvot-57a-b---preparation-for-nisuin.mp3
 ```
 ## What sites does it support?
 Here is the list of sites that `torah-dl` supports already, and what's coming soon:
