@@ -14,9 +14,15 @@ We follow the [Contributor Covenant](https://www.contributor-covenant.org/) code
 
 ## How to run the project
 
-We use `uv` to manage our python versions and dependencies. If you haven't installed `uv`, please do so by following the instructions [here](https://docs.astral.sh/uv/getting-started/installation/).
+We use [Hermit](https://cashapp.github.io/hermit/) to manage our development environment. To get started, install Hermit with:
 
-Once you have `uv` installed, you can install the project's dependencies by running `uv sync`.
+```bash
+curl -fsSL https://github.com/cashapp/hermit/releases/download/stable/install.sh | /bin/bash
+```
+
+Hermit will automatically install and manage `uv` and `task` for you when you run any of the project commands.
+
+Once Hermit is installed, you can install the project's dependencies by running `uv sync`.
 
 To run the project, use `uv run pytest -vv -s --cov=torah_dl` to run the tests, or `task test` if you have [task](https://taskfile.dev/) installed.
 
