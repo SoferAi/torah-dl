@@ -82,7 +82,7 @@ class YutorahExtractor(Extractor):
             response = requests.get(url, timeout=30, headers={"User-Agent": "torah-dl/1.0"})
             response.raise_for_status()
         except requests.RequestException as e:
-            raise NetworkError(str(e)) from e
+            raise NetworkError(str(e)) from e  # pragma: no cover
 
         # Parse the page content
         soup = BeautifulSoup(response.content, "html.parser")

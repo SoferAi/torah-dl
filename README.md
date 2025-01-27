@@ -35,6 +35,10 @@ Here is the list of sites that `torah-dl` supports already, and what's coming so
 - [x] [TorahAnytime](https://www.torahanytime.com)
 - [x] [TorahApp](https://torahapp.org)
 - [x] [OUTorah.org](https://www.outorah.org)
+- [x] [AllDaf.org](https://www.alldaf.org)
+- [ ] [AllHalacha.org](https://www.allhalacha.org)
+- [ ] [AllParsha.com](https://www.allparsha.org)
+- [ ] [AllMishna.com](https://www.allmishna.com)
 - [x] [TorahDownloads.org](https://www.torahdownloads.org)
 - [ ] Help us out by adding your favorite Torah website!
 
