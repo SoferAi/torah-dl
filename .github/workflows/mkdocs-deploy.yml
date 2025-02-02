@@ -61,6 +61,6 @@ jobs:
         run: uv sync --frozen
 
       - name: Deploy docs for dev
-        run: uv run mike deploy --push --update-aliases dev
+        run: uvx mike deploy --push --update-aliases dev
         env:
           GITHUB_TOKEN: ${{ steps.generate-token.outputs.token }}
