@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.4.1](https://github.com/SoferAi/torah-dl/compare/v0.4.0...v0.4.1) (2025-02-02)
+
+
+### Bug Fixes
+
+* use lower versions for compatibility ([#25](https://github.com/SoferAi/torah-dl/issues/25)) ([065c73d](https://github.com/SoferAi/torah-dl/commit/065c73d7d13d9cb33781056089d372eee33716a5))
+
 ## [0.4.0](https://github.com/SoferAi/torah-dl/compare/v0.3.1...v0.4.0) (2025-01-27)
 
 
