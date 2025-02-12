@@ -9,7 +9,11 @@ name: Continuous Integration
 "on":
   push:
     branches: ["main"]
+    paths:
+      - "**/*.py"
   pull_request:
+    paths:
+      - "**/*.py"
   release:
     types: [published]
 
