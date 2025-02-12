@@ -11,9 +11,13 @@ name: Continuous Integration
     branches: ["main"]
     paths:
       - "**/*.py"
+      - "**/*.lock"
+      - "**/*.toml"
   pull_request:
     paths:
       - "**/*.py"
+      - "**/*.lock"
+      - "**/*.toml"
   release:
     types: [published]
 
