@@ -9,8 +9,10 @@
   },
   "packageRules": [
     {
-      "matchDepTypes": [
-        "devDependencies"
+      "matchDatasources": [
+        "github-runners",
+        "github-actions",
+        "hermit"
       ],
       "automerge": true
     }
