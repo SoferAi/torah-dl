@@ -16,7 +16,7 @@ def test_version():
 def test_help():
     result = runner.invoke(app, ["--help"])
     assert result.exit_code == 0
-    assert "TODO: add description" in result.output
+    assert "SoferAI's Torah Downloader" in result.output
 
 
 def test_extract_url():

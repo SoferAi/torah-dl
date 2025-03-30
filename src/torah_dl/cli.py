@@ -71,7 +71,7 @@ def callback(
     ] = None,
 ):
     """
-    TODO: add description
+    SoferAI's Torah Downloader
     """
     pass
 

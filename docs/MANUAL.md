@@ -1,6 +1,6 @@
 # `torah-dl`
 
-TODO: add description
+SoferAI&#x27;s Torah Downloader
 
 **Usage**:
 

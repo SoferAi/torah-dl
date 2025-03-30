@@ -3,7 +3,7 @@
 # You can create workflows that run tests whenever you push a change to your repository, or that deploy merged pull requests to production.
 # For more information, see the [GitHub Actions documentation](https://docs.github.com/en/actions).
 
-name: Continuous Integration
+name: CI
 
 # This workflow is triggered on push to the 'main' branch, pull request, and release.
 "on":
@@ -31,44 +31,34 @@ env:
 jobs:
   format:
     # This job checks out the code, sets up Python, installs the 'uv' tool, and runs a formatting check using 'ruff'.
-    name: "format"
     runs-on: ubuntu-24.04
     steps:
       # actions/checkout@v4 is a GitHub Action that checks out the code in the repository.
       - uses: actions/checkout@v4
 
-      # actions/setup-python@v5 is a GitHub Action that sets up the Python environment.
-      - uses: actions/setup-python@v5
+      - name: Install uv
+        uses: astral-sh/setup-uv@v5
         with:
+          enable-cache: true
           python-version: ${{ env.PYTHON_VERSION }}
 
-      - name: "Install uv"
-        run: curl -LsSf https://astral.sh/uv/install.sh | sh
-
       - name: "Format"
-        run: uvx ruff format --diff .
+        run: uv run ruff format --diff .
 
   lint:
     # This job checks out the code, sets up Python, installs the 'uv' tool, and runs a linting check using 'ruff'.
-    timeout-minutes: 10
-    name: "lint"
     runs-on: ubuntu-24.04
-    strategy:
-      fail-fast: false
-      matrix:
-        linter: ["ruff check"]
     steps:
       - uses: actions/checkout@v4
 
-      - uses: actions/setup-python@v5
+      - name: Install uv
+        uses: astral-sh/setup-uv@v5
         with:
+          enable-cache: true
           python-version: ${{ env.PYTHON_VERSION }}
 
-      - name: "Install uv"
-        run: curl -LsSf https://astral.sh/uv/install.sh | sh
-
       - name: Lint
-        run: uvx ${{ matrix.linter }} .
+        run: uv run ruff check .
 
   test:
     needs: [format, lint]
@@ -76,6 +66,11 @@ jobs:
       matrix:
         python-version: ["3.10", "3.11", "3.12", "3.13"]
         os: ["ubuntu-24.04", "macos-14", "windows-2022"]
+
+    concurrency:
+      group: ${{ matrix.os }}
+      cancel-in-progress: false
+
     runs-on: ${{ matrix.os }}
     steps:
       - name: Checkout repo
