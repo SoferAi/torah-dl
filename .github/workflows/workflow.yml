@@ -68,7 +68,7 @@ jobs:
         os: ["ubuntu-24.04", "macos-14", "windows-2022"]
 
     concurrency:
-      group: ${{ matrix.os }}
+      group: ${{ matrix.os }}-${{ github.ref_name }}
       cancel-in-progress: false
 
     runs-on: ${{ matrix.os }}
