@@ -1,5 +1,18 @@
 # Changelog
 
+## [0.5.0](https://github.com/SoferAi/torah-dl/compare/v0.4.1...v0.5.0) (2025-03-30)
+
+
+### Features
+
+* naaleh support ([#52](https://github.com/SoferAi/torah-dl/issues/52)) ([e918079](https://github.com/SoferAi/torah-dl/commit/e918079c353d4a18e56460cfd57e2ec747742edc))
+
+
+### Bug Fixes
+
+* semgrep ([#53](https://github.com/SoferAi/torah-dl/issues/53)) ([9433dc9](https://github.com/SoferAi/torah-dl/commit/9433dc982e5fd83a79c02cb58a2fc946efc5950a))
+* update packages to working versions ([#48](https://github.com/SoferAi/torah-dl/issues/48)) ([8e2a69b](https://github.com/SoferAi/torah-dl/commit/8e2a69b5e50fac36574f26e136cd3fd1fa6bb5ee))
+
 ## [0.4.1](https://github.com/SoferAi/torah-dl/compare/v0.4.0...v0.4.1) (2025-02-02)
 
 
