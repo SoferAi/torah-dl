@@ -66,7 +66,7 @@ jobs:
       matrix:
         python-version: ["3.10", "3.11", "3.12", "3.13"]
         os: ["ubuntu-24.04", "macos-14", "windows-2022"]
-      max-parallel: 5
+      max-parallel: 3
 
     runs-on: ${{ matrix.os }}
     steps:
@@ -86,4 +86,5 @@ jobs:
         with:
           max_attempts: 3
           timeout_minutes: 10
+          retry_wait_seconds: 60
           command: uv run pytest -vv -s --cov=torah_dl
