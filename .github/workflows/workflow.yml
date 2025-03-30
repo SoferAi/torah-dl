@@ -86,4 +86,5 @@ jobs:
         with:
           max_attempts: 3
           timeout_minutes: 10
+          retry_wait_seconds: 60
           command: uv run pytest -vv -s --cov=torah_dl
