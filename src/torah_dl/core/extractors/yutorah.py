@@ -15,6 +15,9 @@ class YutorahExtractor(Extractor):
     links along with their associated titles from the page's JavaScript content.
     """
 
+    name: str = "YUTorah"
+    homepage: str = "https://yutorah.org"
+
     EXAMPLES = [  # noqa: RUF012
         ExtractionExample(
             name="main_page",

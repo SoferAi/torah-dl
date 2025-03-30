@@ -29,6 +29,9 @@ class ExtractionExample(BaseModel):
 class Extractor(ABC):
     """Abstract base class for all extractors."""
 
+    name: str
+    homepage: str
+
     EXAMPLES: ClassVar[list[ExtractionExample]] = []
 
     @property

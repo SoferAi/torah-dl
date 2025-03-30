@@ -15,6 +15,9 @@ class AllDafExtractor(Extractor):
     links along with their associated titles from various locations in the page.
     """
 
+    name: str = "AllDaf"
+    homepage: str = "https://alldaf.org"
+
     EXAMPLES = [  # noqa: RUF012
         ExtractionExample(
             name="main_page",

@@ -16,6 +16,9 @@ class OutorahExtractor(Extractor):
     links along with their associated titles from the page's JavaScript content.
     """
 
+    name: str = "OU Torah"
+    homepage: str = "https://outorah.org"
+
     EXAMPLES = [  # noqa: RUF012
         ExtractionExample(
             name="main_page",

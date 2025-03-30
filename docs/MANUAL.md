@@ -19,6 +19,7 @@ $ torah-dl [OPTIONS] COMMAND [ARGS]...
 
 * `extract`: Extract information from a given URL
 * `download`: Download a file from a URL and show progress.
+* `list`: List all available extractors.
 
 ## `torah-dl extract`
 
@@ -53,6 +54,20 @@ $ torah-dl download [OPTIONS] URL [OUTPUT_PATH]
 
 * `URL`: URL to download  [required]
 * `[OUTPUT_PATH]`: Path to save the downloaded file  [default: audio]
+
+**Options**:
+
+* `--help`: Show this message and exit.
+
+## `torah-dl list`
+
+List all available extractors.
+
+**Usage**:
+
+```console
+$ torah-dl list [OPTIONS]
+```
 
 **Options**:
 

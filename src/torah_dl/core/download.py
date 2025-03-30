@@ -21,4 +21,4 @@ def download(url: str, output_path: Path, timeout: int = 30):
         raise DownloadError(url) from e
 
     with open(output_path, "wb") as f:
-        f.write(response.content)
+        _ = f.write(response.content)
