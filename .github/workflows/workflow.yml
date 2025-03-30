@@ -66,10 +66,7 @@ jobs:
       matrix:
         python-version: ["3.10", "3.11", "3.12", "3.13"]
         os: ["ubuntu-24.04", "macos-14", "windows-2022"]
-
-    concurrency:
-      group: ${{ matrix.os }}-${{ github.ref_name }}
-      cancel-in-progress: false
+      max-parallel: 3
 
     runs-on: ${{ matrix.os }}
     steps:
