@@ -85,4 +85,5 @@ jobs:
         uses: nick-fields/retry@v3
         with:
           max_attempts: 3
+          timeout_minutes: 10
           command: uv run pytest -vv -s --cov=torah_dl
