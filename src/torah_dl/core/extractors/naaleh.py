@@ -1,8 +1,9 @@
 import re
 from re import Pattern
-from typing import cast, override
+from typing import cast
 from urllib.parse import parse_qs, quote, urlparse
 
+from typing_extensions import override
 import requests
 from bs4 import BeautifulSoup, Tag
 
