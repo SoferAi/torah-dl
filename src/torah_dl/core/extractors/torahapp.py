@@ -13,6 +13,15 @@ from ..models import Extraction, ExtractionExample, Extractor
 
 
 class TorahAppExtractor(Extractor):
+    """Extract audio content from TorahApp.org.
+
+    This extractor handles URLs from torahapp.org or thetorahapp.org and extracts MP3 download
+    links.
+    """
+
+    name: str = "TorahApp"
+    homepage: str = "https://torahapp.org"
+
     EXAMPLES = [  # noqa: RUF012
         ExtractionExample(
             name="yu_lecture",
@@ -113,7 +122,7 @@ class TorahAppExtractor(Extractor):
         results.update([unquote(x) for x in re.findall(get_pattern, parsed.query)])
 
         if len(results) > 1:
-            raise MoreThanOneIDFoundError()
+            raise MoreThanOneIDFoundError(str(parsed))
         elif len(results) == 0:
             raise NoIDFoundError(str(parsed))
 

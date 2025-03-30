@@ -14,6 +14,9 @@ class TorahAnytimeExtractor(Extractor):
     links along with their associated titles from the page's JavaScript content.
     """
 
+    name: str = "TorahAnytime"
+    homepage: str = "https://torahanytime.com"
+
     EXAMPLES = [  # noqa: RUF012
         ExtractionExample(
             name="main_page",

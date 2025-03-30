@@ -15,6 +15,9 @@ class TorahDownloadsExtractor(Extractor):
     links along with their associated titles from various locations in the page.
     """
 
+    name: str = "TorahDownloads"
+    homepage: str = "https://torahdownloads.com"
+
     EXAMPLES = [  # noqa: RUF012
         ExtractionExample(
             name="main_page",

@@ -9,10 +9,12 @@ from .core.exceptions import (
     TitleExtractionError,
     TorahDLError,
 )
-from .core.extract import can_handle, extract
+from .core.extract import EXTRACTORS, can_handle, extract
+from .core.list import list_extractors
 from .core.models import Extraction
 
 __all__ = [
+    "EXTRACTORS",
     "ContentExtractionError",
     "DownloadError",
     "DownloadURLError",
@@ -25,4 +27,5 @@ __all__ = [
     "can_handle",
     "download",
     "extract",
+    "list_extractors",
 ]

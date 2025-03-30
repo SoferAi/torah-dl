@@ -6,7 +6,7 @@ import typer
 from rich.console import Console
 from rich.table import Table
 
-from torah_dl import download, extract
+from torah_dl import download, extract, list_extractors
 from torah_dl.core.exceptions import ExtractorNotFoundError
 
 try:
@@ -54,6 +54,17 @@ def download_url(
         download(extraction.download_url, output_path)
 
 
+@app.command(name="list")
+def list_extractors_command():
+    """List all available extractors."""
+    extractors = list_extractors()
+    table = Table(box=None, pad_edge=False)
+    table.add_row("Name", "Homepage")
+    for name, homepage in extractors.items():
+        table.add_row(name, homepage)
+    console.print(table)
+
+
 def version_callback(value: bool):
     """
     print version information to shell
@@ -65,7 +76,7 @@ def version_callback(value: bool):
 
 @app.callback(invoke_without_command=True)
 def callback(
-    version: Annotated[
+    _: Annotated[
         bool | None,
         typer.Option("--version", callback=version_callback, is_eager=True),
     ] = None,
