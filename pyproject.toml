@@ -28,7 +28,7 @@ classifiers = [
 dependencies = [
     "bs4>=0.0.2",
     "defusedxml>=0.6.0",
-    "pydantic>=2.0",
+    "pydantic>=2.11",
     "requests>=2.0",
     "urllib3>=2.0",
 ]
