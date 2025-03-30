@@ -3,9 +3,11 @@ name: Publish docs via GitHub Pages
   push:
     branches: ["main"]
 
+permissions:
+  contents: write
 
 jobs:
-  deploy-dev-docs:
+  deploy-docs:
     runs-on: ubuntu-24.04
     steps:
       - name: Check out repository
@@ -44,23 +46,11 @@ jobs:
         run: git config --global url.https://${{ steps.generate-token.outputs.token }}@github.com/.insteadOf https://github.com/
 
       - name: Install uv
-        run: curl -LsSf https://astral.sh/uv/install.sh | sh
-
-      - name: Load cached venv
-        id: cached-uv-dependencies
-        uses: actions/cache@v4
+        uses: astral-sh/setup-uv@v5
         with:
-          path: .venv
-          key: venv-${{ runner.os }}-${{ steps.setup-python.outputs.python-version }}-${{ hashFiles('**/uv.lock') }}
-
-      - name: Install Dependencies
-        if: steps.cached-uv-dependencies.outputs.cache-hit != 'true'
-        run: uv sync --frozen --no-install-project
-
-      - name: Install project
-        run: uv sync --frozen
+          enable-cache: true
 
       - name: Deploy docs for dev
-        run: uvx mike deploy --push --update-aliases dev
+        run: uv run mkdocs gh-deploy --force
         env:
           GITHUB_TOKEN: ${{ steps.generate-token.outputs.token }}

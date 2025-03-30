@@ -1,7 +1,7 @@
 [project]
 name = "torah-dl"
 version = "0.4.1"
-description = "Add your description here"
+description = "SoferAI's Torah Downloader"
 readme = "README.md"
 authors = [{ name = "Matanya Loewenthal", email = "matanya@loewenthal.net" }]
 # can't use 3.9 bc of | operand type

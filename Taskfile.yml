@@ -42,6 +42,7 @@ tasks:
       - task: fix
       - task: lint
       - task: test
+      - task: docs
   test:
     desc: Run the tests
     aliases: [t]

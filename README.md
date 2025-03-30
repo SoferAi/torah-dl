@@ -67,4 +67,10 @@ Allowing transcription services to make Torah more accessible 😉
 
 Other uses include downloading Torah audio for offline listening, or for use in Torah study tools, or for training AI models to understand Torah, or for other purposes (please see question above about permissions).
 </details>
+
+## Contributors
+<a href="https://github.com/SoferAi/torah-dl/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=SoferAi/torah-dl" />
+</a>
+
 <!--intro-end-->

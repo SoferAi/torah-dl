@@ -1,5 +1,5 @@
 ---
-site_name: Torah-dl Docs
+site_name: Torah-dl
 repo_url: https://github.com/SoferAI/torah-dl
 repo_name: SoferAI/torah-dl
 theme:
@@ -14,29 +14,7 @@ theme:
   icon:
     logo: material/tree
   palette:
-    # Palette toggle for automatic mode
-    - media: (prefers-color-scheme)
-      toggle:
-        icon: material/brightness-auto
-        name: Switch to light mode
-
-    # Palette toggle for light mode
-    - media: '(prefers-color-scheme: light)'
-      scheme: default
-      primary: dark blue
-      accent: dark blue
-      toggle:
-        icon: material/brightness-7
-        name: Switch to dark mode
-
-    # Palette toggle for dark mode
-    - media: '(prefers-color-scheme: dark)'
-      scheme: slate
-      primary: dark blue
-      accent: dark blue
-      toggle:
-        icon: material/brightness-4
-        name: Switch to system preference
+    scheme: soferai
 validation:
   links:
     absolute_links: info
@@ -77,3 +55,5 @@ markdown_extensions:
 extra:
   version:
     provider: mike
+extra_css:
+  - stylesheets/extra.css
