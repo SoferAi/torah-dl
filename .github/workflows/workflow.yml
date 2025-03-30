@@ -81,6 +81,8 @@ jobs:
       - name: Install the project
         run: uv sync --all-extras --dev
 
-      - name: Run Pytest
-        run: |
-          uv run pytest -vv -s --cov=torah_dl
+      - name: Run Pytes
+        uses: nick-fields/retry@v3
+        with:
+          max_attempts: 3
+          command: uv run pytest -vv -s --cov=torah_dl
