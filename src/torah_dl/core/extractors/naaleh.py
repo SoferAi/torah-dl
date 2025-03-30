@@ -3,9 +3,9 @@ from re import Pattern
 from typing import cast
 from urllib.parse import parse_qs, quote, urlparse
 
-from typing_extensions import override
 import requests
 from bs4 import BeautifulSoup, Tag
+from typing_extensions import override
 
 from ..exceptions import DownloadURLError, NetworkError
 from ..models import Extraction, ExtractionExample, Extractor
