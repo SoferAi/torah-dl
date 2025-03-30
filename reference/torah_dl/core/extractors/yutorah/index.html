@@ -12,7 +12,7 @@
         <link rel="prev" href="../torahdownloads/">
       
       
-        <link rel="next" href="../../models/">
+        <link rel="next" href="../../list/">
       
       
       <link rel="icon" href="../../../../../assets/images/favicon.png">
@@ -665,6 +665,27 @@
   
   
     <li class="md-nav__item">
+      <a href="../naaleh/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    naaleh
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../outorah/" class="md-nav__link">
         
   
@@ -844,6 +865,27 @@
           </ul>
         </nav>
       
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../list/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    list
+  </span>
+  
+
+      </a>
     </li>
   
 
@@ -1132,12 +1174,18 @@ links along with their associated titles from the page's JavaScript content.</p>
 <span class="normal">111</span>
 <span class="normal">112</span>
 <span class="normal">113</span>
-<span class="normal">114</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">YutorahExtractor</span><span class="p">(</span><span class="n">Extractor</span><span class="p">):</span>
+<span class="normal">114</span>
+<span class="normal">115</span>
+<span class="normal">116</span>
+<span class="normal">117</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">YutorahExtractor</span><span class="p">(</span><span class="n">Extractor</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Extract audio content from YUTorah.org.</span>
 
 <span class="sd">    This extractor handles URLs from www.yutorah.org and extracts MP3 download</span>
 <span class="sd">    links along with their associated titles from the page&#39;s JavaScript content.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;YUTorah&quot;</span>
+    <span class="n">homepage</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;https://yutorah.org&quot;</span>
 
     <span class="n">EXAMPLES</span> <span class="o">=</span> <span class="p">[</span>  <span class="c1"># noqa: RUF012</span>
         <span class="n">ExtractionExample</span><span class="p">(</span>
@@ -1281,7 +1329,7 @@ links along with their associated titles from the page's JavaScript content.</p>
       <tbody>
           <tr class="doc-section-item">
             <td>
-                  <code>list[<span title="re.Pattern">Pattern</span>]</code>
+                  <code><a class="autorefs autorefs-internal" title="torah_dl.core.list" href="../../list/#torah_dl.core.list">list</a>[<span title="re.Pattern">Pattern</span>]</code>
             </td>
             <td>
               <div class="doc-md-description">
@@ -1401,10 +1449,7 @@ links along with their associated titles from the page's JavaScript content.</p>
 
             <details class="quote">
               <summary>Source code in <code>src/torah_dl/core/extractors/yutorah.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 68</span>
-<span class="normal"> 69</span>
-<span class="normal"> 70</span>
-<span class="normal"> 71</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 71</span>
 <span class="normal"> 72</span>
 <span class="normal"> 73</span>
 <span class="normal"> 74</span>
@@ -1447,7 +1492,10 @@ links along with their associated titles from the page's JavaScript content.</p>
 <span class="normal">111</span>
 <span class="normal">112</span>
 <span class="normal">113</span>
-<span class="normal">114</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">extract</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">url</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Extraction</span><span class="p">:</span>
+<span class="normal">114</span>
+<span class="normal">115</span>
+<span class="normal">116</span>
+<span class="normal">117</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">extract</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">url</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Extraction</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Extract download URL and title from a YUTorah.org page.</span>
 
 <span class="sd">    Args:</span>

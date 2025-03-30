@@ -665,6 +665,27 @@
   
   
     <li class="md-nav__item">
+      <a href="core/extractors/naaleh/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    naaleh
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="core/extractors/outorah/" class="md-nav__link">
         
   
@@ -766,6 +787,27 @@
           </ul>
         </nav>
       
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="core/list/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    list
+  </span>
+  
+
+      </a>
     </li>
   
 
@@ -951,6 +993,15 @@
   <a href="#torah_dl.extract" class="md-nav__link">
     <span class="md-ellipsis">
       extract
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#torah_dl.list_extractors" class="md-nav__link">
+    <span class="md-ellipsis">
+      list_extractors
     </span>
   </a>
   
@@ -1513,7 +1564,7 @@
         <span class="k">raise</span> <span class="n">DownloadError</span><span class="p">(</span><span class="n">url</span><span class="p">)</span> <span class="kn">from</span><span class="w"> </span><span class="nn">e</span>
 
     <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">output_path</span><span class="p">,</span> <span class="s2">&quot;wb&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
-        <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">content</span><span class="p">)</span>
+        <span class="n">_</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">content</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
             </details>
     </div>
@@ -1550,6 +1601,34 @@
             <span class="k">return</span> <span class="n">extractor</span><span class="o">.</span><span class="n">extract</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
 
     <span class="k">raise</span> <span class="n">ExtractorNotFoundError</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h2 id="torah_dl.list_extractors" class="doc doc-heading">
+            <span class="doc doc-object-name doc-function-name">list_extractors</span>
+
+
+</h2>
+<div class="doc-signature highlight"><pre><span></span><code><span class="nf">list_extractors</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]</span>
+</code></pre></div>
+
+    <div class="doc doc-contents ">
+
+        <p>List all available extractors.</p>
+
+            <details class="quote">
+              <summary>Source code in <code>src/torah_dl/core/list.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">list_extractors</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;List all available extractors.&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="p">{</span><span class="n">extractor</span><span class="o">.</span><span class="n">name</span><span class="p">:</span> <span class="n">extractor</span><span class="o">.</span><span class="n">homepage</span> <span class="k">for</span> <span class="n">extractor</span> <span class="ow">in</span> <span class="n">EXTRACTORS</span><span class="p">}</span>
 </code></pre></div></td></tr></table></div>
             </details>
     </div>

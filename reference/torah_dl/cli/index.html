@@ -542,6 +542,15 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#torah_dl.cli.list_extractors_command" class="md-nav__link">
+    <span class="md-ellipsis">
+      list_extractors_command
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#torah_dl.cli.version_callback" class="md-nav__link">
     <span class="md-ellipsis">
       version_callback
@@ -746,6 +755,27 @@
   
   
     <li class="md-nav__item">
+      <a href="../core/extractors/naaleh/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    naaleh
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../core/extractors/outorah/" class="md-nav__link">
         
   
@@ -859,6 +889,27 @@
   
   
     <li class="md-nav__item">
+      <a href="../core/list/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    list
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../core/models/" class="md-nav__link">
         
   
@@ -957,6 +1008,15 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#torah_dl.cli.list_extractors_command" class="md-nav__link">
+    <span class="md-ellipsis">
+      list_extractors_command
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#torah_dl.cli.version_callback" class="md-nav__link">
     <span class="md-ellipsis">
       version_callback
@@ -1018,7 +1078,7 @@
 
 </h2>
 <div class="doc-signature highlight"><pre><span></span><code><span class="nf">callback</span><span class="p">(</span>
-    <span class="n">version</span><span class="p">:</span> <span class="n">Annotated</span><span class="p">[</span>
+    <span class="n">_</span><span class="p">:</span> <span class="n">Annotated</span><span class="p">[</span>
         <span class="nb">bool</span> <span class="o">|</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">typer</span><span class="o">.</span><span class="n">Option</span><span class="p">(</span>
             <span class="o">--</span><span class="n">version</span><span class="p">,</span>
@@ -1035,19 +1095,19 @@
 
             <details class="quote">
               <summary>Source code in <code>src/torah_dl/cli.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">66</span>
-<span class="normal">67</span>
-<span class="normal">68</span>
-<span class="normal">69</span>
-<span class="normal">70</span>
-<span class="normal">71</span>
-<span class="normal">72</span>
-<span class="normal">73</span>
-<span class="normal">74</span>
-<span class="normal">75</span>
-<span class="normal">76</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@app</span><span class="o">.</span><span class="n">callback</span><span class="p">(</span><span class="n">invoke_without_command</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">77</span>
+<span class="normal">78</span>
+<span class="normal">79</span>
+<span class="normal">80</span>
+<span class="normal">81</span>
+<span class="normal">82</span>
+<span class="normal">83</span>
+<span class="normal">84</span>
+<span class="normal">85</span>
+<span class="normal">86</span>
+<span class="normal">87</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@app</span><span class="o">.</span><span class="n">callback</span><span class="p">(</span><span class="n">invoke_without_command</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="k">def</span><span class="w"> </span><span class="nf">callback</span><span class="p">(</span>
-    <span class="n">version</span><span class="p">:</span> <span class="n">Annotated</span><span class="p">[</span>
+    <span class="n">_</span><span class="p">:</span> <span class="n">Annotated</span><span class="p">[</span>
         <span class="nb">bool</span> <span class="o">|</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">typer</span><span class="o">.</span><span class="n">Option</span><span class="p">(</span><span class="s2">&quot;--version&quot;</span><span class="p">,</span> <span class="n">callback</span><span class="o">=</span><span class="n">version_callback</span><span class="p">,</span> <span class="n">is_eager</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span>
     <span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
@@ -1192,6 +1252,46 @@
 <div class="doc doc-object doc-function">
 
 
+<h2 id="torah_dl.cli.list_extractors_command" class="doc doc-heading">
+            <span class="doc doc-object-name doc-function-name">list_extractors_command</span>
+
+
+</h2>
+<div class="doc-signature highlight"><pre><span></span><code><span class="nf">list_extractors_command</span><span class="p">()</span>
+</code></pre></div>
+
+    <div class="doc doc-contents ">
+
+        <p>List all available extractors.</p>
+
+            <details class="quote">
+              <summary>Source code in <code>src/torah_dl/cli.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">57</span>
+<span class="normal">58</span>
+<span class="normal">59</span>
+<span class="normal">60</span>
+<span class="normal">61</span>
+<span class="normal">62</span>
+<span class="normal">63</span>
+<span class="normal">64</span>
+<span class="normal">65</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@app</span><span class="o">.</span><span class="n">command</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;list&quot;</span><span class="p">)</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">list_extractors_command</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;List all available extractors.&quot;&quot;&quot;</span>
+    <span class="n">extractors</span> <span class="o">=</span> <span class="n">list_extractors</span><span class="p">()</span>
+    <span class="n">table</span> <span class="o">=</span> <span class="n">Table</span><span class="p">(</span><span class="n">box</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">pad_edge</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="n">table</span><span class="o">.</span><span class="n">add_row</span><span class="p">(</span><span class="s2">&quot;Name&quot;</span><span class="p">,</span> <span class="s2">&quot;Homepage&quot;</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">homepage</span> <span class="ow">in</span> <span class="n">extractors</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="n">table</span><span class="o">.</span><span class="n">add_row</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">homepage</span><span class="p">)</span>
+    <span class="n">console</span><span class="o">.</span><span class="n">print</span><span class="p">(</span><span class="n">table</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
 <h2 id="torah_dl.cli.version_callback" class="doc doc-heading">
             <span class="doc doc-object-name doc-function-name">version_callback</span>
 
@@ -1206,13 +1306,13 @@
 
             <details class="quote">
               <summary>Source code in <code>src/torah_dl/cli.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">57</span>
-<span class="normal">58</span>
-<span class="normal">59</span>
-<span class="normal">60</span>
-<span class="normal">61</span>
-<span class="normal">62</span>
-<span class="normal">63</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">version_callback</span><span class="p">(</span><span class="n">value</span><span class="p">:</span> <span class="nb">bool</span><span class="p">):</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">68</span>
+<span class="normal">69</span>
+<span class="normal">70</span>
+<span class="normal">71</span>
+<span class="normal">72</span>
+<span class="normal">73</span>
+<span class="normal">74</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">version_callback</span><span class="p">(</span><span class="n">value</span><span class="p">:</span> <span class="nb">bool</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    print version information to shell</span>
 <span class="sd">    &quot;&quot;&quot;</span>
