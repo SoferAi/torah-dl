@@ -167,3 +167,4 @@ cython_debug/
 *.m4a
 
 .vscode/
+.hermit/
