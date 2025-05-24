@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.6.0](https://github.com/SoferAi/torah-dl/compare/v0.5.0...v0.6.0) (2025-05-24)
+
+
+### Features
+
+* demo website ([#78](https://github.com/SoferAi/torah-dl/issues/78)) ([1d8c1a5](https://github.com/SoferAi/torah-dl/commit/1d8c1a5150c76565035d041e0f2e761815336b6c))
+
+
+### Bug Fixes
+
+* add lib ([#82](https://github.com/SoferAi/torah-dl/issues/82)) ([70c7684](https://github.com/SoferAi/torah-dl/commit/70c76847b8ff5fedbc548e558ec82ac5b09dcbc7))
+
 ## [0.5.0](https://github.com/SoferAi/torah-dl/compare/v0.4.1...v0.5.0) (2025-03-30)
 
 
