@@ -80,14 +80,14 @@ class AllParshaExtractor(Extractor):
         # Parse the page content
         soup = BeautifulSoup(response.content, "html.parser")
 
-        # Extract the post ID from the URL
+        # Extract the post-ID from the URL
         post_id_match = re.search(r"/p/(\d+)$", url)
         if not post_id_match:
             raise DownloadURLError("Could not extract post ID from URL")
         
         post_id = post_id_match.group(1)
 
-        # Try to find the series title and post title
+        # Try to find the series title and post-title
         series_title = self._extract_series_title(soup)
         post_title = self._extract_post_title(soup)
         
@@ -101,8 +101,7 @@ class AllParshaExtractor(Extractor):
         encoded_title = urllib.parse.quote(full_title)
         
         # Construct the s3Url (assuming the pattern from the example)
-        # The pattern seems to be: https://media.ou.org/torah/{series_id}/{post_id}/{post_id}.mp3
-        # We'll need to extract the series_id from the series href or make an educated guess
+        # Pattern to follow: https://media.ou.org/torah/{series_id}/{post_id}/{post_id}.mp3
         series_id = self._extract_series_id(soup, post_id)
         
         s3_url = f"https://media.ou.org/torah/{series_id}/{post_id}/{post_id}.mp3"
@@ -141,8 +140,8 @@ class AllParshaExtractor(Extractor):
         return ""
 
     def _extract_post_title(self, soup: BeautifulSoup) -> str:
-        """Extract the post title from the page."""
-        # Try to find post title in various locations
+        """Extract the post-title from the page."""
+        # Try to find post-title in various locations
         selectors = [
             ".post-title",
             ".post__title",
