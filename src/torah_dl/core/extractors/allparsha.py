@@ -19,6 +19,11 @@ class AllParshaExtractor(Extractor):
     name: str = "AllParsha"
     homepage: str = "https://allparsha.org"
 
+    # Error messages
+    _ERR_POST_ID = "Could not extract post ID from URL"
+    _ERR_TITLES = "Could not extract series title or post title"
+    _ERR_SERIES_ID = "Could not extract series ID from page"
+
     EXAMPLES = [  # noqa: RUF012
         ExtractionExample(
             name="main_page",
@@ -83,81 +88,69 @@ class AllParshaExtractor(Extractor):
         # Extract the post-ID from the URL
         post_id_match = re.search(r"/p/(\d+)$", url)
         if not post_id_match:
-            raise DownloadURLError("Could not extract post ID from URL")
-        
+            raise DownloadURLError(self._ERR_POST_ID)
+
         post_id = post_id_match.group(1)
 
         # Try to find the series title and post-title
         series_title = self._extract_series_title(soup)
         post_title = self._extract_post_title(soup)
-        
+
         if not series_title or not post_title:
-            raise DownloadURLError("Could not extract series title or post title")
+            raise DownloadURLError(self._ERR_TITLES)
 
         # Construct the full title
         full_title = f"{series_title} - {post_title}"
-        
+
         # URL encode the title for the download URL
         encoded_title = urllib.parse.quote(full_title)
-        
+
         # Construct the s3Url (assuming the pattern from the example)
         # Pattern to follow: https://media.ou.org/torah/{series_id}/{post_id}/{post_id}.mp3
         series_id = self._extract_series_id(soup, post_id)
-        
+
         s3_url = f"https://media.ou.org/torah/{series_id}/{post_id}/{post_id}.mp3"
-        
+
         # Construct the full download URL
         download_url = f"https://outorah.org/download?title={encoded_title}&s3Url={urllib.parse.quote(s3_url)}"
-        
+
         file_format = "audio/mp3"
         file_name = f"{post_id}.mp3"
-        
-        return Extraction(
-            download_url=download_url,
-            title=full_title,
-            file_format=file_format,
-            file_name=file_name
-        )
+
+        return Extraction(download_url=download_url, title=full_title, file_format=file_format, file_name=file_name)
 
     def _extract_series_title(self, soup: BeautifulSoup) -> str:
         """Extract the series title from the page."""
         # Try to find series title in various locations
         selectors = [
             ".series-title",
-            ".series__title", 
+            ".series__title",
             ".breadcrumb a[href*='/series/']",
             ".post__header a[href*='/series/']",
-            "a[href*='/series/']"
+            "a[href*='/series/']",
         ]
-        
+
         for selector in selectors:
             element = soup.select_one(selector)
             if element:
                 title = element.get_text().strip()
                 if title:
                     return title
-        
+
         return ""
 
     def _extract_post_title(self, soup: BeautifulSoup) -> str:
         """Extract the post-title from the page."""
         # Try to find post-title in various locations
-        selectors = [
-            ".post-title",
-            ".post__title",
-            "h1",
-            ".title",
-            ".post-header h1",
-            ".post__header h1"
-        ]
-        
+        selectors = [".post-title", ".post__title", "h1", ".title", ".post-header h1", ".post__header h1"]
+
         for selector in selectors:
             element = soup.select_one(selector)
             if element:
                 title = element.get_text().strip()
                 if title:
                     return title
-        
+
         return ""
 
     def _extract_series_id(self, soup: BeautifulSoup, post_id: str) -> str:
@@ -170,20 +163,20 @@ class AllParshaExtractor(Extractor):
                 series_id_match = re.search(r"/series/(\d+)", href)
                 if series_id_match:
                     return series_id_match.group(1)
-        
+
         # If we can't find the series ID, we'll need to make an educated guess
         # Try to find any numeric ID that might be the series ID
         # Look for patterns like "series/4134" or similar
         series_patterns = [
-            r'series/(\d+)',
+            r"series/(\d+)",
             r'seriesId["\']?\s*:\s*["\']?(\d+)["\']?',
-            r'data-series-id["\']?\s*=\s*["\']?(\d+)["\']?'
+            r'data-series-id["\']?\s*=\s*["\']?(\d+)["\']?',
         ]
-        
+
         html_content = str(soup)
         for pattern in series_patterns:
             match = re.search(pattern, html_content)
             if match:
                 return match.group(1)
-        
-        raise DownloadURLError("Could not extract series ID from page") 
+
+        raise DownloadURLError(self._ERR_SERIES_ID)
