@@ -52,7 +52,6 @@ tasks:
     desc: Generate the documentation
     cmds:
       - uv run typer torah_dl.cli utils docs --output docs/MANUAL.md --name torah-dl
-      - uv run mkdocs build
 
   gen-cov-badge:
     desc: Generate the coverage badge
