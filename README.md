@@ -37,11 +37,12 @@ Here is the list of sites that `torah-dl` supports already, and what's coming so
 - [x] [OUTorah.org](https://www.outorah.org)
 - [x] [AllDaf.org](https://www.alldaf.org)
 - [ ] [AllHalacha.org](https://www.allhalacha.org)
-- [ ] [AllParsha.com](https://www.allparsha.org)
+- [x] [AllParsha.com](https://www.allparsha.org)
 - [ ] [AllMishna.com](https://www.allmishna.com)
 - [x] [TorahDownloads.org](https://www.torahdownloads.org)
 - [x] [Naaleh.com](https://www.naaleh.com)
 - [x] [Torahweb.com](https://www.torahweb.org)
+- [x] [Orayta.com](https://www.orayta.org)
 - [ ] Help us out by adding your favorite Torah website!
 
 ## Contributing
