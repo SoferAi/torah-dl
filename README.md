@@ -41,6 +41,7 @@ Here is the list of sites that `torah-dl` supports already, and what's coming so
 - [ ] [AllMishna.com](https://www.allmishna.com)
 - [x] [TorahDownloads.org](https://www.torahdownloads.org)
 - [x] [Naaleh.com](https://www.naaleh.com)
+- [x] [Mp3Shiur.com](http://www.mp3shiur.com/)
 - [ ] Help us out by adding your favorite Torah website!
 
 ## Contributing
