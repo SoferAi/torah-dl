@@ -42,6 +42,11 @@ Here is the list of sites that `torah-dl` supports already, and what's coming so
 - [x] [TorahDownloads.org](https://www.torahdownloads.org)
 - [x] [Naaleh.com](https://www.naaleh.com)
 - [x] [Etzion.org](https://www.etzion.org.il/en)
+- [x] [TorahMediaInAmerica.com](http://torahmediaamerica.com/)
+- [x] [Nishmat.net](https://nishmat.net/)
+- [x] [Mp3Shiur.com](http://www.mp3shiur.com/)
+- [x] [Torahweb.com](https://www.torahweb.org)
+- [x] [Orayta.com](https://www.orayta.org)
 - [ ] Help us out by adding your favorite Torah website!
 
 ## Contributing
