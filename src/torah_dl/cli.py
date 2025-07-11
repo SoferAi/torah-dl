@@ -37,7 +37,10 @@ def extract_url(
         typer.echo(extraction.download_url)
     else:
         table = Table(box=None, pad_edge=False)
-        table.add_row("Title", extraction.title, style="cyan")
+        table.add_column(style="bold")
+        # Set no_wrap=True to display full URL
+        table.add_column(style="cyan", no_wrap=True)
+        table.add_row("Title", extraction.title)
         table.add_row("Download URL", extraction.download_url, style="green")
         console.print(table)
 
