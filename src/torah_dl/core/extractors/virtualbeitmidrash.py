@@ -23,7 +23,7 @@ class VirtualBeitMidrashExtractor(Extractor):
             download_url="https://traffic.libsyn.com/secure/kmtt/RYEtshalom_megilat-hahessed-ruth-avraham-and-the-meaning-of-hessed.mp3",
             title="Megilat haHessed - Ruth, Avraham and the Meaning of Hessed",
             file_format="audio/mp3",
-            valid=False,
+            valid=True,
         ),
         ExtractionExample(
             name="etzion_video_page",
@@ -31,7 +31,7 @@ class VirtualBeitMidrashExtractor(Extractor):
             download_url="https://www.youtube.com/embed/-l6Tlqg2syc?wmode=opaque",
             title="Tehillim at the Center of Tefilla",
             file_format="video/youtube",
-            valid=False,
+            valid=True,
         ),
         ExtractionExample(
             name="etzion_audio_page_2",
@@ -39,7 +39,7 @@ class VirtualBeitMidrashExtractor(Extractor):
             download_url="http://traffic.libsyn.com/kmtt/wed_10_05_06-ebick_berachot01.mp3",
             title="Connecting the Redemption to Tefilla",
             file_format="audio/mp3",
-            valid=False,
+            valid=True,
         ),
         ExtractionExample(
             name="invalid_link",
