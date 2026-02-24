@@ -28,8 +28,8 @@ class AllParshaExtractor(Extractor):
         ExtractionExample(
             name="main_page",
             url="https://allparsha.org/p/197738",
-            download_url="https://outorah.org/download?title=Aliya%20Outlines%20-%20Mishpatim%206%20-%20The%20Angel%20Leading%20to%20the%20Land&s3Url=https%3A//media.ou.org/torah/4134/197738/197738.mp3",
-            title="Aliya Outlines - Mishpatim 6 - The Angel Leading to the Land",
+            download_url="https://outorah.org/download?title=Aliyah%20Outlines%20-%20Mishpatim%206%20-%20The%20Angel%20Leading%20to%20the%20Land&s3Url=https%3A//media.ou.org/torah/4134/197738/197738.mp3",
+            title="Aliyah Outlines - Mishpatim 6 - The Angel Leading to the Land",
             file_format="audio/mp3",
             valid=True,
         ),
@@ -121,14 +121,8 @@ class AllParshaExtractor(Extractor):
 
     def _extract_series_title(self, soup: BeautifulSoup) -> str:
         """Extract the series title from the page."""
-        # Try to find series title in various locations
-        selectors = [
-            ".series-title",
-            ".series__title",
-            ".breadcrumb a[href*='/series/']",
-            ".post__header a[href*='/series/']",
-            "a[href*='/series/']",
-        ]
+        # Current site reliably includes a single breadcrumb series link.
+        selectors = ["a[href*='/series/']", ".series-title", ".series__title", ".breadcrumb a[href*='/series/']"]
 
         for selector in selectors:
             element = soup.select_one(selector)
@@ -141,13 +135,13 @@ class AllParshaExtractor(Extractor):
 
     def _extract_post_title(self, soup: BeautifulSoup) -> str:
         """Extract the post-title from the page."""
-        # Try to find post-title in various locations
-        selectors = [".post-title", ".post__title", "h1", ".title", ".post-header h1", ".post__header h1"]
+        # Current site renders post title in an h5; keep fallbacks for older layouts.
+        selectors = [".post-title", ".post__title", "h5", "meta[property='og:description']", "h1", ".title"]
 
         for selector in selectors:
             element = soup.select_one(selector)
             if element:
-                title = element.get_text().strip()
+                title = element.get("content", "").strip() if element.name == "meta" else element.get_text().strip()
                 if title:
                     return title
 

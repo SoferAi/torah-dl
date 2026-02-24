@@ -3,8 +3,9 @@ from re import Pattern
 from urllib.parse import parse_qs, urlparse
 
 import requests
+from bs4 import BeautifulSoup
 
-from ..exceptions import ContentExtractionError, DownloadURLError, NetworkError, TitleExtractionError
+from ..exceptions import ContentExtractionError, DownloadURLError, NetworkError
 from ..models import Extraction, ExtractionExample, Extractor
 
 
@@ -48,12 +49,6 @@ class OraytaExtractor(Extractor):
     # URL pattern for Orayta.org pages
     URL_PATTERN = re.compile(r"https?://(?:www\.)?orayta\.org/")
 
-    def __init__(self):
-        """Initialize the Orayta extractor."""
-        from .yutorah import YutorahExtractor
-
-        self.yutorah_extractor = YutorahExtractor()
-
     @property
     def url_patterns(self) -> list[Pattern]:
         """Return the URL pattern(s) that this extractor can handle.
@@ -76,39 +71,27 @@ class OraytaExtractor(Extractor):
             ValueError: If the URL is invalid or content cannot be extracted
             requests.RequestException: If there are network-related issues
         """
+        shiur_id, shiur_title = self._extract_shiur_info(url)
+        yutorah_url = self._construct_classic_yutorah_url(shiur_id, shiur_title)
+
         try:
-            # Extract shiur information from the URL
-            shiur_id, shiur_title = self._extract_shiur_info(url)
+            response = requests.get(yutorah_url, timeout=30, headers={"User-Agent": "torah-dl/1.0"})
+            response.raise_for_status()
+        except requests.RequestException as e:
+            raise NetworkError(str(e)) from e  # pragma: no cover
 
-            # Try to construct the YUTorah URL and extract from it
-            yutorah_url = self._construct_yutorah_url(shiur_id, shiur_title)
+        # classic.yutorah pages still expose the direct mp3 URL in html
+        mp3_match = re.search(r"https?://[^\"'\s>]+\.mp3(?:\?[^\"'\s<]*)?", response.text, re.IGNORECASE)
+        if not mp3_match:
+            raise DownloadURLError()
 
-            try:
-                # Use the YUTorah extractor to get the actual download URL and title
-                extraction = self.yutorah_extractor.extract(yutorah_url)
-            except (DownloadURLError, TitleExtractionError, NetworkError):
-                # If YUTorah extraction fails, try to construct the download URL directly
-                download_url = self._construct_download_url(shiur_id, shiur_title)
+        download_url = mp3_match.group(0)
+        file_name = download_url.split("/")[-1].split("?")[0]
+        title = self._extract_title(response.text, shiur_title)
+        if not title:
+            raise ContentExtractionError()
 
-                # Verify the download URL exists
-                try:
-                    response = requests.head(download_url, timeout=10, headers={"User-Agent": "torah-dl/1.0"})
-                    if response.status_code != 200:
-                        raise DownloadURLError()
-                except requests.RequestException as e:
-                    raise DownloadURLError() from e
-
-                file_name = f"{shiur_title.lower().replace(' ', '-')}.mp3"
-
-                return Extraction(
-                    download_url=download_url, title=shiur_title, file_format="audio/mp3", file_name=file_name
-                )
-            else:
-                return extraction
-        except ContentExtractionError:
-            raise
-        except Exception as e:
-            raise ContentExtractionError() from e
+        return Extraction(download_url=download_url, title=title, file_format="audio/mp3", file_name=file_name)
 
     def _extract_shiur_info(self, url: str) -> tuple[str, str]:
         """Extract shiurID and shiurTitle from the Orayta URL.
@@ -133,33 +116,30 @@ class OraytaExtractor(Extractor):
 
         return shiur_id, shiur_title
 
-    def _construct_yutorah_url(self, shiur_id: str, shiur_title: str) -> str:
-        """Construct the corresponding YUTorah.org URL.
+    def _construct_classic_yutorah_url(self, shiur_id: str, shiur_title: str) -> str:
+        """Construct the classic YUTorah iframe URL.
 
         Args:
             shiur_id: The shiur ID
             shiur_title: The shiur title
 
         Returns:
-            str: The YUTorah.org URL
+            str: The classic YUTorah URL
         """
-        # Convert title to URL-friendly format (lowercase, replace spaces with hyphens)
         title_slug = shiur_title.lower().replace(" ", "-")
-        return f"https://www.yutorah.org/lectures/{shiur_id}/{title_slug}"
+        return f"https://classic.yutorah.org/lectures/lecture_iframe.cfm/{shiur_id}/{title_slug}"
 
-    def _construct_download_url(self, shiur_id: str, shiur_title: str) -> str:
-        """Construct the direct download URL by scraping the YUTorah page only."""
-        # Try to get the actual year and category ID from YUTorah only
-        yutorah_url = self._construct_yutorah_url(shiur_id, shiur_title)
-        try:
-            response = requests.get(yutorah_url, timeout=10, headers={"User-Agent": "torah-dl/1.0"})
-            if response.status_code == 200:
-                import re
+    def _extract_title(self, html: str, fallback_title: str) -> str:
+        """Extract title from the classic YUTorah page title."""
+        soup = BeautifulSoup(html, "html.parser")
+        page_title = soup.title.get_text(strip=True) if soup.title else ""
 
-                download_pattern = re.compile(r'"downloadURL":"(https?://[^"]+\.mp3)"')
-                match = download_pattern.search(response.text)
-                if match:
-                    return match.group(1)
-        except requests.RequestException:
-            pass
-        raise DownloadURLError()
+        # Example: "YUTorah Online - Reuven, Yehudah, and the Quest for Leadership (Rabbi Yitzchak Blau)"
+        if page_title.startswith("YUTorah Online - "):
+            title = page_title.replace("YUTorah Online - ", "", 1)
+            title = re.sub(r"\s+\(Rabbi.*\)$", "", title).strip()
+            if title:
+                return title
+
+        # Fallback to the Orayta URL slug if title parsing changes upstream
+        return fallback_title.replace("-", " ").strip()
