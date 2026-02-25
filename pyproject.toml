@@ -1,6 +1,6 @@
 [project]
 name = "torah-dl"
-version = "0.6.0"
+version = "0.6.1"
 description = "SoferAI's Torah Downloader"
 readme = "README.md"
 authors = [{ name = "Matanya Loewenthal", email = "matanya@loewenthal.net" }]
