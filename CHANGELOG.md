@@ -1,5 +1,33 @@
 # Changelog
 
+## [0.6.0](https://github.com/SoferAi/torah-dl/compare/v0.5.0...v0.6.0) (2026-02-25)
+
+
+### Features
+
+* added kol halashon extractor ([#189](https://github.com/SoferAi/torah-dl/issues/189)) ([a70f173](https://github.com/SoferAi/torah-dl/commit/a70f17397a5530c64f4033fde49405eb46c74dd9))
+* **cli:** improve extract command output formatting ([#142](https://github.com/SoferAi/torah-dl/issues/142)) ([38d9ec6](https://github.com/SoferAi/torah-dl/commit/38d9ec66862905378498d117d62c641a8529acbc))
+* **core:** add AllParsha.org audio content extractor ([#123](https://github.com/SoferAi/torah-dl/issues/123)) ([f503fae](https://github.com/SoferAi/torah-dl/commit/f503faee1801b412e3d6535f497e19a8e50b8d99))
+* **core:** add Etzion.org audio/video content extractor ([#128](https://github.com/SoferAi/torah-dl/issues/128)) ([33cfb3e](https://github.com/SoferAi/torah-dl/commit/33cfb3ee40a3f319879c69cdca42385f5751e341))
+* **core:** add Mp3Shiur.com audio content extractor ([#146](https://github.com/SoferAi/torah-dl/issues/146)) ([35b285f](https://github.com/SoferAi/torah-dl/commit/35b285fdc2a6a335d6d6801f0cf5ccdfcceeedc2))
+* **core:** add Nishmat.net audio content extractor ([#143](https://github.com/SoferAi/torah-dl/issues/143)) ([8052dd9](https://github.com/SoferAi/torah-dl/commit/8052dd99659b5c91813da17c0e3e3f8e742135e2))
+* **core:** add Orayta.org audio/youtube content extractor ([#135](https://github.com/SoferAi/torah-dl/issues/135)) ([a308202](https://github.com/SoferAi/torah-dl/commit/a30820233307d2cf20308e5319f1f94973fdf237))
+* **core:** add TorahInAmerica.com audio content extractor ([#145](https://github.com/SoferAi/torah-dl/issues/145)) ([3903989](https://github.com/SoferAi/torah-dl/commit/390398940c4a4e960c8b8e4b0a0c37ecc4bc97cf))
+* **core:** add Torahweb.org audio content extractor ([#141](https://github.com/SoferAi/torah-dl/issues/141)) ([3488d48](https://github.com/SoferAi/torah-dl/commit/3488d48db4485687f9ff040e84c1cb2891bc5b2d))
+* demo website ([#78](https://github.com/SoferAi/torah-dl/issues/78)) ([1d8c1a5](https://github.com/SoferAi/torah-dl/commit/1d8c1a5150c76565035d041e0f2e761815336b6c))
+
+
+### Bug Fixes
+
+* add lib ([#82](https://github.com/SoferAi/torah-dl/issues/82)) ([70c7684](https://github.com/SoferAi/torah-dl/commit/70c76847b8ff5fedbc548e558ec82ac5b09dcbc7))
+* conventional commits ([#136](https://github.com/SoferAi/torah-dl/issues/136)) ([c56ae29](https://github.com/SoferAi/torah-dl/commit/c56ae298b10cd0b404388cef5e91a5c457bf747d))
+* **deps:** update dependency lucide-react to ^0.514.0 ([#105](https://github.com/SoferAi/torah-dl/issues/105)) ([3951c62](https://github.com/SoferAi/torah-dl/commit/3951c62cc87a4cd87e92f6cedaebb4c17b0ccee8))
+* **deps:** update dependency tailwind-merge to v3.3.1 ([#112](https://github.com/SoferAi/torah-dl/issues/112)) ([dc12915](https://github.com/SoferAi/torah-dl/commit/dc12915419f0841203cdaf9ba63a4b80c71f8b19))
+* **deps:** update nextjs monorepo to v15.3.3 ([#98](https://github.com/SoferAi/torah-dl/issues/98)) ([d56a300](https://github.com/SoferAi/torah-dl/commit/d56a30075aeb9a674a9e1f275c2bc405775d46d8))
+* **deps:** update nextjs monorepo to v15.3.4 ([#121](https://github.com/SoferAi/torah-dl/issues/121)) ([194ea5d](https://github.com/SoferAi/torah-dl/commit/194ea5dc53b23c0061d7cff923a19b00c76562d2))
+* **deps:** update nextjs monorepo to v15.5.9 ([#149](https://github.com/SoferAi/torah-dl/issues/149)) ([02cfa41](https://github.com/SoferAi/torah-dl/commit/02cfa41292203c6aab68f1f3d877a50492c620be))
+* flakey tests ([#93](https://github.com/SoferAi/torah-dl/issues/93)) ([e499f37](https://github.com/SoferAi/torah-dl/commit/e499f3763864d93177d4a5a400c6caaaf870e6be))
+
 ## [0.5.0](https://github.com/SoferAi/torah-dl/compare/v0.4.1...v0.5.0) (2025-03-30)
 
 
