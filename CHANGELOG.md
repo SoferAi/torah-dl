@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.6.1](https://github.com/SoferAi/torah-dl/compare/v0.6.0...v0.6.1) (2026-02-25)
+
+
+### Bug Fixes
+
+* kol halashon title and other url type fix ([#190](https://github.com/SoferAi/torah-dl/issues/190)) ([ea5b831](https://github.com/SoferAi/torah-dl/commit/ea5b8314fe91c156b1478cb9a935ae9714259b32))
+
 ## [0.6.0](https://github.com/SoferAi/torah-dl/compare/v0.5.0...v0.6.0) (2026-02-25)
 
 
