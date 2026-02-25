@@ -14,6 +14,8 @@ class VirtualBeitMidrashExtractor(Extractor):
     name: str = "Virtual Beit Midrash (Etzion)"
     homepage: str = "https://etzion.org.il"
 
+    # Etzion currently blocks automated HTTP clients behind Cloudflare.
+    # Keep these examples for URL matching, but mark as invalid in live tests.
     EXAMPLES = [  # noqa: RUF012
         ExtractionExample(
             name="etzion_audio_page",

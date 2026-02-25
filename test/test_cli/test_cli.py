@@ -20,15 +20,25 @@ def test_help():
 
 
 def test_extract_url():
-    result = runner.invoke(app, ["extract", "https://www.yutorah.org/lectures/details?shiurid=1117409"])
+    result = runner.invoke(
+        app,
+        ["extract", "https://www.kolhalashon.com/new/Media/PlayShiur.aspx?FileName=34412186&English=True&Lang=English"],
+    )
     assert result.exit_code == 0
-    assert "Ketubot 42: Dechitat Aveilut (1)" in result.output
+    assert "Shiur 34412186" in result.output
 
 
 def test_extract_url_only():
-    result = runner.invoke(app, ["extract", "https://www.yutorah.org/lectures/details?shiurid=1117409", "--url-only"])
+    result = runner.invoke(
+        app,
+        [
+            "extract",
+            "https://www.kolhalashon.com/new/Media/PlayShiur.aspx?FileName=34412186&English=True&Lang=English",
+            "--url-only",
+        ],
+    )
     assert result.exit_code == 0
-    assert "https://download.yutorah.org/2024/21197/1117409/ketubot-42-dechitat-aveilut-1.mp3" in result.output
+    assert "https://www.kolhalashon.com/mp3/NewArchive/34412/34412186.mp3" in result.output
 
 
 def test_extract_url_failed():
@@ -42,7 +52,7 @@ def test_download_url(tmp_path):
         app,
         [
             "download",
-            "https://yutorah.org/lectures/1116233/Daily-HalachahCollecting-an-Amazon-Order-on-Shabbat",
+            "https://www.kolhalashon.com/new/Media/PlayShiur.aspx?FileName=34412186&English=True&Lang=English",
             str(tmp_path / "test.mp3"),
         ],
     )

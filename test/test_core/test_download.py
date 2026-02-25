@@ -7,7 +7,7 @@ from torah_dl.core.exceptions import DownloadError
 
 
 def test_download(tmp_path):
-    url = "https://download.yutorah.org/2024/36856/1116233/daily-halachah---collecting-an-amazon-order-on-shabbat.mp3"
+    url = "https://www.kolhalashon.com/mp3/NewArchive/34412/34412186.mp3"
 
     download(url, tmp_path / "test.mp3")
     assert os.path.exists(tmp_path / "test.mp3")
