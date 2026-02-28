@@ -34,7 +34,7 @@ jobs:
     runs-on: ubuntu-24.04
     steps:
       # actions/checkout@v4 is a GitHub Action that checks out the code in the repository.
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
 
       - name: Install uv
         uses: astral-sh/setup-uv@v6
@@ -49,7 +49,7 @@ jobs:
     # This job checks out the code, sets up Python, installs the 'uv' tool, and runs a linting check using 'ruff'.
     runs-on: ubuntu-24.04
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
 
       - name: Install uv
         uses: astral-sh/setup-uv@v6
@@ -71,7 +71,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     steps:
       - name: Checkout repo
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Install uv
         uses: astral-sh/setup-uv@v6
