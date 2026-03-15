@@ -52,6 +52,14 @@ class YutorahExtractor(Extractor):
             file_format="",
             valid=False,
         ),
+        ExtractionExample(
+            name="lecture_cfm_link",
+            url="https://www.yutorah.org/lectures/lecture.cfm/1163859",
+            download_url="https://download.yutorah.org/2026/15203/1163859/beis-din--secular-courts-arkaos.mp3",
+            title="Beis Din & Secular Courts (Arkaos)",
+            file_format="audio/mp3",
+            valid=True,
+        ),
     ]
 
     # URL pattern for YUTorah.org pages
@@ -108,6 +116,8 @@ class YutorahExtractor(Extractor):
         query = parse_qs(urlparse(url).query)
         if shiurid := query.get("shiurid", [None])[0]:
             return shiurid
+        if match := re.search(r"/lectures/lecture\.cfm/(\d+)", url):
+            return match.group(1)
         if match := re.search(r"/lectures/(\d+)", url):
             return match.group(1)
         if match := re.search(r"/sidebar/lecturedata/(\d+)", url):
