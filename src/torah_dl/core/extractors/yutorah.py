@@ -63,10 +63,14 @@ class YutorahExtractor(Extractor):
     ]
 
     # URL pattern for YUTorah.org pages
-    URL_PATTERN = re.compile(r"https?://(?:www\.)?yutorah\.org/")
+    URL_PATTERN = re.compile(r"https?://(?:[\w-]+\.)?yutorah\.org/", re.IGNORECASE)
 
     DOWNLOAD_URL_PATTERN = re.compile(r"https?://[^\"'\s>]+\.mp3(?:\?[^\"'\s<]*)?", re.IGNORECASE)
-    SHIUR_ID_PATTERN = re.compile(r"/(?:lectures|sidebar/lecturedata)/(?:details\?shiurid=)?(\d+)")
+    SHIUR_ID_PATTERNS = [  # noqa: RUF012
+        re.compile(r"^/lectures/(\d+)(?:/|$)", re.IGNORECASE),
+        re.compile(r"^/lectures/lecture(?:_iframe)?\.cfm/(\d+)(?:/|$)", re.IGNORECASE),
+        re.compile(r"^/sidebar/lecturedata/(\d+)(?:/|$)", re.IGNORECASE),
+    ]
 
     @property
     def url_patterns(self) -> list[Pattern]:
@@ -76,6 +80,9 @@ class YutorahExtractor(Extractor):
             List[Pattern]: List of compiled regex patterns matching YUTorah.org URLs
         """
         return [self.URL_PATTERN]
+
+    def can_handle(self, url: str) -> bool:
+        return super().can_handle(url) and self._extract_shiur_id(url) is not None
 
     def extract(self, url: str) -> Extraction:
         """Extract download URL and title from a YUTorah.org page.
@@ -114,16 +121,14 @@ class YutorahExtractor(Extractor):
 
     def _extract_shiur_id(self, url: str) -> str | None:
         query = parse_qs(urlparse(url).query)
-        if shiurid := query.get("shiurid", [None])[0]:
-            return shiurid
-        if match := re.search(r"/lectures/lecture\.cfm/(\d+)", url):
-            return match.group(1)
-        if match := re.search(r"/lectures/(\d+)", url):
-            return match.group(1)
-        if match := re.search(r"/sidebar/lecturedata/(\d+)", url):
-            return match.group(1)
-        if match := self.SHIUR_ID_PATTERN.search(url):
-            return match.group(1)
+        for key, values in query.items():
+            if key.lower() == "shiurid" and values and values[0]:
+                return values[0]
+
+        path = urlparse(url).path
+        for pattern in self.SHIUR_ID_PATTERNS:
+            if match := pattern.search(path):
+                return match.group(1)
         return None
 
     def _extract_title(self, html: str) -> str | None:
