@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.6.2](https://github.com/SoferAi/torah-dl/compare/v0.6.1...v0.6.2) (2026-05-11)
+
+
+### Bug Fixes
+
+* support YUTorah legacy lecture.cfm URL format ([#194](https://github.com/SoferAi/torah-dl/issues/194)) ([2c0f87d](https://github.com/SoferAi/torah-dl/commit/2c0f87d06869d7103f2a805066a4efa5f1c1a6f4)), closes [#193](https://github.com/SoferAi/torah-dl/issues/193)
+* yuTorah error fix ([#197](https://github.com/SoferAi/torah-dl/issues/197)) ([8729ff4](https://github.com/SoferAi/torah-dl/commit/8729ff4ac162a8203ec862dfae8c42677b17db7d))
+
 ## [0.6.1](https://github.com/SoferAi/torah-dl/compare/v0.6.0...v0.6.1) (2026-02-25)
 
 
