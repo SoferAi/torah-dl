@@ -3,12 +3,45 @@ import re
 from collections.abc import Iterator
 from typing import Any
 
+import requests
 from bs4 import BeautifulSoup
 
+from ..exceptions import DownloadURLError, NetworkError
 from ..models import Extraction
 
-POST_ID_PATTERN = re.compile(r"/p/(?P<post_id>\d+)(?:/|$)")
+POST_ID_PATTERN = re.compile(r"/p/(?P<post_id>\d+)(?=[/?#]|$)")
 ESCAPED_SLASH_PATTERN = re.compile(r"\\u002[fF]")
+CANONICAL_HOST = "https://outorah.org"
+REQUEST_HEADERS = {"User-Agent": "torah-dl/1.0"}
+ERR_POST_ID = "Could not extract OU post ID from URL"
+ERR_MEDIA = "Could not extract media for OU post"
+
+
+def canonical_post_url(url: str) -> str:
+    """Return the canonical OU Torah URL for any OU-family post URL."""
+    post_id_match = POST_ID_PATTERN.search(url)
+    if not post_id_match:
+        raise DownloadURLError(ERR_POST_ID)
+
+    return f"{CANONICAL_HOST}/p/{post_id_match.group('post_id')}"
+
+
+def extract_canonical_media(url: str) -> Extraction:
+    """Resolve an OU-family post through its canonical OU Torah page."""
+    canonical_url = canonical_post_url(url)
+    try:
+        response = requests.get(canonical_url, timeout=30, headers=REQUEST_HEADERS)
+        response.raise_for_status()
+    except requests.RequestException as exc:
+        raise NetworkError(str(exc)) from exc
+
+    html = response.content.decode("utf-8", errors="replace")
+    soup = BeautifulSoup(response.content, "html.parser")
+    extraction = extract_structured_media(canonical_url, html, soup)
+    if not extraction:
+        raise DownloadURLError(ERR_MEDIA)
+
+    return extraction
 
 
 def extract_structured_media(url: str, html: str, soup: BeautifulSoup) -> Extraction | None:

@@ -4,8 +4,12 @@ import pytest
 import requests
 from bs4 import BeautifulSoup
 
-from torah_dl.core.extractors._ou import extract_structured_media
+from torah_dl.core.exceptions import DownloadURLError, NetworkError
+from torah_dl.core.extractors._ou import canonical_post_url, extract_canonical_media, extract_structured_media
 from torah_dl.core.extractors.alldaf import AllDafExtractor
+from torah_dl.core.extractors.allhalacha import AllHalachaExtractor
+from torah_dl.core.extractors.allmishnah import AllMishnahExtractor
+from torah_dl.core.extractors.allparsha import AllParshaExtractor
 from torah_dl.core.extractors.outorah import OutorahExtractor
 from torah_dl.core.models import Extractor
 
@@ -16,6 +20,19 @@ class _MockResponse:
 
     def raise_for_status(self) -> None:
         pass
+
+
+def _current_ou_html(post_id: str, series_id: str, title: str, extension: str = "mp3") -> str:
+    escaped_download_url = f"https://media.ou.org/torah/{series_id}/{post_id}/{post_id}.{extension}".replace(
+        "/", r"\u002F"
+    )
+    media_type = "AudioObject" if extension == "mp3" else "VideoObject"
+    return f"""
+        <script type="application/ld+json">
+          {{"@context":"https://schema.org/","@type":"{media_type}","name":"{title}"}}
+        </script>
+        <script id="__NUXT_DATA__" type="application/json">["{escaped_download_url}"]</script>
+    """
 
 
 @pytest.mark.parametrize(
@@ -143,3 +160,88 @@ def test_extracts_video_from_nested_json_ld_after_malformed_script() -> None:
 )
 def test_structured_media_requires_post_id_media_url_and_title(url: str, html: str) -> None:
     assert extract_structured_media(url, html, BeautifulSoup(html, "html.parser")) is None
+
+
+@pytest.mark.parametrize(
+    ("url", "expected"),
+    [
+        ("https://outorah.org/p/123", "https://outorah.org/p/123"),
+        ("https://alldaf.org/p/123/", "https://outorah.org/p/123"),
+        ("https://allparsha.org/p/123?ref=home", "https://outorah.org/p/123"),
+        ("https://allmishnah.org/p/123#player", "https://outorah.org/p/123"),
+        ("https://allhalacha.org/p/123", "https://outorah.org/p/123"),
+    ],
+)
+def test_builds_canonical_url_for_every_ou_family_site(url: str, expected: str) -> None:
+    assert canonical_post_url(url) == expected
+
+
+def test_canonical_url_requires_post_id() -> None:
+    with pytest.raises(DownloadURLError, match="post ID"):
+        canonical_post_url("https://allmishnah.org/series/123")
+
+
+@pytest.mark.parametrize(
+    ("extractor", "url", "post_id", "series_id", "title", "native_request_expected"),
+    [
+        (AllDafExtractor(), "https://alldaf.org/p/212365", "212365", "4093", "OU Torah post", True),
+        (AllParshaExtractor(), "https://allparsha.org/p/36785", "36785", "2925", "AllDaf post", True),
+        (
+            AllMishnahExtractor(),
+            "https://allmishnah.org/p/201079",
+            "201079",
+            "4885",
+            "Bava Metzia 1:1",
+            False,
+        ),
+        (
+            AllHalachaExtractor(),
+            "https://allhalacha.org/p/23886",
+            "23886",
+            "3762",
+            "Mishnah Brurah Yomi - Introduction",
+            False,
+        ),
+    ],
+)
+def test_resolves_ou_post_through_any_family_hostname(
+    monkeypatch: pytest.MonkeyPatch,
+    extractor: Extractor,
+    url: str,
+    post_id: str,
+    series_id: str,
+    title: str,
+    native_request_expected: bool,
+) -> None:
+    requested_urls: list[str] = []
+    canonical_url = f"https://outorah.org/p/{post_id}"
+    canonical_html = _current_ou_html(post_id, series_id, title)
+
+    def fake_get(request_url: str, **kwargs: object) -> _MockResponse:
+        requested_urls.append(request_url)
+        return _MockResponse(canonical_html if request_url == canonical_url else "Error: Post is not found")
+
+    monkeypatch.setattr(requests, "get", fake_get)
+
+    extraction = extractor.extract(url)
+
+    assert extraction.download_url == f"https://media.ou.org/torah/{series_id}/{post_id}/{post_id}.mp3"
+    assert extraction.title == title
+    assert requested_urls == ([url] if native_request_expected else []) + [canonical_url]
+
+
+def test_canonical_extraction_fails_when_ou_torah_has_no_media(monkeypatch: pytest.MonkeyPatch) -> None:
+    monkeypatch.setattr(requests, "get", lambda *args, **kwargs: _MockResponse("Post is not found"))
+
+    with pytest.raises(DownloadURLError, match="Could not extract media"):
+        extract_canonical_media("https://allhalacha.org/p/000000")
+
+
+def test_canonical_extraction_wraps_network_errors(monkeypatch: pytest.MonkeyPatch) -> None:
+    def fail_request(*args: object, **kwargs: object) -> _MockResponse:
+        raise requests.ConnectionError("offline")
+
+    monkeypatch.setattr(requests, "get", fail_request)
+
+    with pytest.raises(NetworkError, match="offline"):
+        extract_canonical_media("https://allmishnah.org/p/201079")

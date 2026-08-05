@@ -4,9 +4,9 @@ from re import Pattern
 import requests
 from bs4 import BeautifulSoup
 
-from ..exceptions import DownloadURLError, NetworkError
+from ..exceptions import NetworkError
 from ..models import Extraction, ExtractionExample, Extractor
-from ._ou import extract_structured_media
+from ._ou import extract_canonical_media, extract_structured_media
 
 
 class AllDafExtractor(Extractor):
@@ -142,4 +142,4 @@ class AllDafExtractor(Extractor):
         #     file_name = download_url.split("/")[-1]
         #     return Extraction(download_url=download_url, title=title, file_format=file_format, file_name=file_name)
 
-        raise DownloadURLError()
+        return extract_canonical_media(url)
