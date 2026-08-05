@@ -7,6 +7,7 @@ from bs4 import BeautifulSoup
 
 from ..exceptions import ContentExtractionError, DownloadURLError, NetworkError
 from ..models import Extraction, ExtractionExample, Extractor
+from ._ou import extract_structured_media
 
 
 class OutorahExtractor(Extractor):
@@ -75,6 +76,10 @@ class OutorahExtractor(Extractor):
 
         # Parse the page content
         soup = BeautifulSoup(response.content, "html.parser")
+        html = response.content.decode("utf-8", errors="replace")
+        if extraction := extract_structured_media(url, html, soup):
+            return extraction
+
         if download_link := soup.find("a", attrs={"href": self.MP3_DOWNLOAD_URL_PATTERN}):
             download_url = re.search(r"s3Url=(.*\.mp3)", download_link["href"]).group(1)
             title = re.search(r"title=(.*?)&", download_link["href"])

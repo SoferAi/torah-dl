@@ -6,6 +6,7 @@ from bs4 import BeautifulSoup
 
 from ..exceptions import DownloadURLError, NetworkError
 from ..models import Extraction, ExtractionExample, Extractor
+from ._ou import extract_structured_media
 
 
 class AllDafExtractor(Extractor):
@@ -86,7 +87,9 @@ class AllDafExtractor(Extractor):
 
         # Parse the page content
         soup = BeautifulSoup(response.content, "html.parser")
-        # html = str(response.content)
+        html = response.content.decode("utf-8", errors="replace")
+        if extraction := extract_structured_media(url, html, soup):
+            return extraction
 
         # Try finding download link in the action bar first
         action_bar_link = soup.select_one('.publication-action-bar__item[href*="s3Url="]')
