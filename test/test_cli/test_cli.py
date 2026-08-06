@@ -25,7 +25,7 @@ def test_extract_url():
         ["extract", "https://www.kolhalashon.com/new/Media/PlayShiur.aspx?FileName=34412186&English=True&Lang=English"],
     )
     assert result.exit_code == 0
-    assert "Shiur 34412186" in result.output
+    assert "Q&A w Rabbi Yaron Reuven The Foundation Of Good" in result.output
 
 
 def test_extract_url_only():

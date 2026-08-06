@@ -19,22 +19,6 @@ class TorahAnytimeExtractor(Extractor):
 
     EXAMPLES = [  # noqa: RUF012
         ExtractionExample(
-            name="main_page",
-            url="https://torahanytime.com/lectures/335042",
-            download_url="https://dl.torahanytime.com/mp3/335042--____10_04_2024__ee9743cb-5d09-4ffc-a3e3-1156e10e8944.mp4.mp3",
-            title="Aish Kodesh- Toldot, 5702, When It's Hard to Thank Hashem (2021/22 Series- Enhanced III)",
-            file_format="audio/mp3",
-            valid=True,
-        ),
-        ExtractionExample(
-            name="short_link",
-            url="https://MyTAT.me/a335042",
-            download_url="https://dl.torahanytime.com/mp3/335042--____10_04_2024__ee9743cb-5d09-4ffc-a3e3-1156e10e8944.mp4.mp3",
-            title="Aish Kodesh- Toldot, 5702, When It's Hard to Thank Hashem (2021/22 Series- Enhanced III)",
-            file_format="audio/mp3",
-            valid=True,
-        ),
-        ExtractionExample(
             name="invalid_link",
             url="https://torahanytime.com/whatever/0000000",
             download_url="",

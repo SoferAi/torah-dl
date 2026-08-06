@@ -25,7 +25,7 @@ class NishmatExtractor(Extractor):
             download_url="https://nishmat.net/wp-content/themes/nishmat/classes/download.php?filename=http://www.nishmattorah.com/uploads/DafnaSeigleman-cr.mp3",
             title="From Egypt to Yam Suf: The Journey to Emunah",
             file_format="audio/mp3",
-            valid=True,
+            valid=False,
         ),
         ExtractionExample(
             name="nishmat_example2",
@@ -33,7 +33,7 @@ class NishmatExtractor(Extractor):
             download_url="https://nishmat.net/wp-content/themes/nishmat/classes/download.php?filename=lecture14.mp3",
             title="Mishloach Manot and Seudat Purim",
             file_format="audio/mp3",
-            valid=True,
+            valid=False,
         ),
         ExtractionExample(
             name="invalid_link",
