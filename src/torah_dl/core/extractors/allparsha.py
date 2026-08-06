@@ -7,6 +7,7 @@ from bs4 import BeautifulSoup
 
 from ..exceptions import DownloadURLError, NetworkError
 from ..models import Extraction, ExtractionExample, Extractor
+from ._ou import POST_ID_PATTERN, extract_canonical_media
 
 
 class AllParshaExtractor(Extractor):
@@ -86,18 +87,18 @@ class AllParshaExtractor(Extractor):
         soup = BeautifulSoup(response.content, "html.parser")
 
         # Extract the post-ID from the URL
-        post_id_match = re.search(r"/p/(\d+)$", url)
+        post_id_match = POST_ID_PATTERN.search(url)
         if not post_id_match:
             raise DownloadURLError(self._ERR_POST_ID)
 
-        post_id = post_id_match.group(1)
+        post_id = post_id_match.group("post_id")
 
         # Try to find the series title and post-title
         series_title = self._extract_series_title(soup)
         post_title = self._extract_post_title(soup)
 
         if not series_title or not post_title:
-            raise DownloadURLError(self._ERR_TITLES)
+            return extract_canonical_media(url)
 
         # Construct the full title
         full_title = f"{series_title} - {post_title}"
@@ -107,7 +108,10 @@ class AllParshaExtractor(Extractor):
 
         # Construct the s3Url (assuming the pattern from the example)
         # Pattern to follow: https://media.ou.org/torah/{series_id}/{post_id}/{post_id}.mp3
-        series_id = self._extract_series_id(soup, post_id)
+        try:
+            series_id = self._extract_series_id(soup, post_id)
+        except DownloadURLError:
+            return extract_canonical_media(url)
 
         s3_url = f"https://media.ou.org/torah/{series_id}/{post_id}/{post_id}.mp3"
 
