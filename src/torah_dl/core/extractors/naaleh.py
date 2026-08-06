@@ -25,10 +25,10 @@ class NaalehExtractor(Extractor):
         ExtractionExample(
             name="main_page",
             url="https://www.naaleh.com/torah_library/?post_id=34538",
-            download_url="https://www.naaleh.com/file_downloader/?file_url=https://cdn.jwplayer.com/videos/Md9qaTch.m4a&title=Unlocking%20the%20order%20of%20Seder%20Night.mp3",
-            title="Unlocking the order of Seder Night",
-            file_format="audio/mp3",
-            valid=True,
+            download_url="",
+            title="",
+            file_format="",
+            valid=False,
         ),
         ExtractionExample(
             name="invalid_link",

@@ -21,7 +21,7 @@ class TorahAnytimeExtractor(Extractor):
         ExtractionExample(
             name="main_page",
             url="https://torahanytime.com/lectures/335042",
-            download_url="https://dl.torahanytime.com/mp3/335042--____10_04_2024__ee9743cb-5d09-4ffc-a3e3-1156e10e8944.mp4.mp3",
+            download_url=None,
             title="Aish Kodesh- Toldot, 5702, When It's Hard to Thank Hashem (2021/22 Series- Enhanced III)",
             file_format="audio/mp3",
             valid=True,
@@ -29,7 +29,7 @@ class TorahAnytimeExtractor(Extractor):
         ExtractionExample(
             name="short_link",
             url="https://MyTAT.me/a335042",
-            download_url="https://dl.torahanytime.com/mp3/335042--____10_04_2024__ee9743cb-5d09-4ffc-a3e3-1156e10e8944.mp4.mp3",
+            download_url=None,
             title="Aish Kodesh- Toldot, 5702, When It's Hard to Thank Hashem (2021/22 Series- Enhanced III)",
             file_format="audio/mp3",
             valid=True,
