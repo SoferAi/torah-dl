@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.6.3](https://github.com/SoferAi/torah-dl/compare/v0.6.2...v0.6.3) (2026-08-06)
+
+
+### Bug Fixes
+
+* restore ou media extraction ([#199](https://github.com/SoferAi/torah-dl/issues/199)) ([7f68fcb](https://github.com/SoferAi/torah-dl/commit/7f68fcbbb6fe9d6288c277c33f1a9e90528cb91c))
+
 ## [0.6.2](https://github.com/SoferAi/torah-dl/compare/v0.6.1...v0.6.2) (2026-05-11)
 
 
