@@ -25,7 +25,7 @@ def test_extract_url():
         ["extract", "https://www.kolhalashon.com/new/Media/PlayShiur.aspx?FileName=34412186&English=True&Lang=English"],
     )
     assert result.exit_code == 0
-    assert "Shiur 34412186" in result.output
+    assert "https://www.kolhalashon.com/mp3/NewArchive/34412/34412186.mp3" in result.output
 
 
 def test_extract_url_only():

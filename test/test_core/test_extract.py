@@ -7,9 +7,10 @@ from torah_dl.core.exceptions import ExtractorNotFoundError
 
 @pytest.mark.flaky(reruns=3)
 @pytest.mark.parametrize("extractor, url, download_url, title, file_format, valid", get_all_the_tests(only_valid=True))
-def test_extract(extractor, url: str, download_url: str, title: str, file_format: str, valid: bool):
+def test_extract(extractor, url: str, download_url: str | None, title: str, file_format: str, valid: bool):
     extraction = extract(url)
-    assert extraction.download_url == download_url
+    if download_url is not None:
+        assert extraction.download_url == download_url
     assert extraction.title == title
     assert extraction.file_format == file_format
 

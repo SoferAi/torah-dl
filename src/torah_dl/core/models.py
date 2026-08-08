@@ -20,7 +20,7 @@ class ExtractionExample(BaseModel):
 
     name: str
     url: str
-    download_url: str
+    download_url: str | None
     title: str
     file_format: str
     valid: bool
