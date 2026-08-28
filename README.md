@@ -54,6 +54,7 @@ Here is the list of sites that `torah-dl` supports already, and what's coming so
 - [X] [Torahweb.com](https://www.torahweb.org)
 - [X] [Orayta.com](https://www.orayta.org)
 - [X] [KolHalashon.com](https://www.kolhalashon.com)
+- [X] [Chabad.org](https://www.chabad.org)
 - [ ] Help us out by adding your favorite Torah website!
 
 > Note: `Virtual Beit Midrash (Etzion)` is currently **temporarily degraded** for automated clients in CI due to upstream Cloudflare/bot protection. Browser access may still work normally.
