@@ -13,11 +13,13 @@ name: CI
       - "**/*.py"
       - "**/*.lock"
       - "**/*.toml"
+      - ".github/workflows/workflow.yml"
   pull_request:
     paths:
       - "**/*.py"
       - "**/*.lock"
       - "**/*.toml"
+      - ".github/workflows/workflow.yml"
   release:
     types: [published]
 
@@ -63,9 +65,10 @@ jobs:
   test:
     needs: [format, lint]
     strategy:
+      fail-fast: false
       matrix:
         python-version: ["3.10", "3.11", "3.12", "3.13"]
-        os: ["ubuntu-24.04", "macos-14", "windows-2022"]
+        os: ["ubuntu-24.04", "macos-15", "windows-2022"]
       max-parallel: 6
 
     runs-on: ${{ matrix.os }}
