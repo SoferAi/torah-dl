@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.6.4](https://github.com/SoferAi/torah-dl/compare/v0.6.3...v0.6.4) (2026-11-09)
+
+
+### Bug Fixes
+
+* **deps:** update nextjs monorepo to v15.5.29 ([#207](https://github.com/SoferAi/torah-dl/issues/207)) ([3955a75](https://github.com/SoferAi/torah-dl/commit/3955a75848f3b1adb75b61eee70954579dcf0df6))
+
 ## [0.6.3](https://github.com/SoferAi/torah-dl/compare/v0.6.2...v0.6.3) (2026-08-06)
 
 
